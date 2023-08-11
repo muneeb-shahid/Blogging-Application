@@ -1,3 +1,5 @@
+import 'package:blog_app/controller/MyBlogController/MyBlogController.dart';
+import 'package:blog_app/functions/Title&BlogValidation/Title&BlogValidation.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,8 +16,9 @@ class MyBlog extends StatelessWidget {
   Widget build(BuildContext context) {
     final databaseRef = FirebaseDatabase.instance.ref("Blog");
     var heightt = MediaQuery.of(context).size.height * 1;
-    TextEditingController titleController = TextEditingController();
-    TextEditingController contentController = TextEditingController();
+    MyBlogController _myBlogController = Get.put(MyBlogController());
+    Title_BlogValidation _title_blogValidation =
+        Get.put(Title_BlogValidation());
 
     return Scaffold(
       backgroundColor: App_Colors.app_background_color,
@@ -53,66 +56,147 @@ class MyBlog extends StatelessWidget {
                   SizedBox(
                     height: heightt * 0.05,
                   ),
-                  TextFormField(
-                      controller: titleController,
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        hintText: 'Write a title of blog...',
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.black,
-                          ),
+
+                  Form(
+                    key: _myBlogController.formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            controller: _myBlogController.titleController,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                               validator: _title_blogValidation.validateTitle,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: const Color.fromARGB(
+                                          255, 122, 93, 93))),
+                              hintText: 'Write a title of blog...',
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )),
+                        SizedBox(
+                          height: heightt * 0.03,
                         ),
-                      )),
-                  SizedBox(
-                    height: heightt * 0.03,
+                        TextFormField(
+                            controller: _myBlogController.contentController,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                            maxLines: 4,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)),
+                              hintText: 'Write a blog content...',
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )),
+
+                      ],
+                    ),
                   ),
-                  TextFormField(
-                      controller: contentController,
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        hintText: 'Write a blog content...',
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.black,
-                          ),
-                        ),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        databaseRef
-                            .child(DateTime.now()
-                                .millisecondsSinceEpoch
-                                .toString())
-                            .set({
-                          "title": titleController.text.toString(),
-                          "content": contentController.text.toString()
-                        }).then((value) {
-                          Get.snackbar(
-                            'Blog is published',
-                            "",
-                            icon:
-                                const Icon(Icons.publish, color: Colors.black),
-                            backgroundColor: App_Colors.app_white_color,
-                            colorText: Colors.black,
-                            snackPosition: SnackPosition.TOP,
-                          );
-                        }).onError((error, stackTrace) {});
-                      },
-                      child: Text("Post"))
+                  
+                        ElevatedButton(
+                            onPressed: () {
+                              databaseRef
+                                  .child(DateTime.now()
+                                      .millisecondsSinceEpoch
+                                      .toString())
+                                  .set({
+                                "title": _myBlogController.titleController.text
+                                    .toString(),
+                                "content": _myBlogController
+                                    .contentController.text
+                                    .toString()
+                              }).then((value) {
+                                Get.snackbar(
+                                  'Blog is published',
+                                  "",
+                                  icon: const Icon(Icons.publish,
+                                      color: Colors.black),
+                                  backgroundColor: App_Colors.app_white_color,
+                                  colorText: Colors.black,
+                                  snackPosition: SnackPosition.TOP,
+                                );
+                              }).onError((error, stackTrace) {});
+                            },
+                            child: Text("Post"))
+                   
+
+                  // TextFormField(
+                  //     controller: _myBlogController.titleController,
+                  //     style: TextStyle(
+                  //       color: Colors.black,
+                  //     ),
+                  //     decoration: InputDecoration(
+                  //       border: OutlineInputBorder(
+                  //           borderSide: BorderSide(
+                  //               color: const Color.fromARGB(255, 122, 93, 93))),
+                  //       hintText: 'Write a title of blog...',
+                  //       focusedBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(5),
+                  //         borderSide: BorderSide(
+                  //           width: 1,
+                  //           color: Colors.black,
+                  //         ),
+                  //       ),
+                  //     )),
+                  // SizedBox(
+                  //   height: heightt * 0.03,
+                  // ),
+                  // TextFormField(
+                  //     controller: _myBlogController.contentController,
+                  //     style: TextStyle(
+                  //       color: Colors.black,
+                  //     ),
+                  //     maxLines: 4,
+                  //     decoration: InputDecoration(
+                  //       border: OutlineInputBorder(
+                  //           borderSide: BorderSide(color: Colors.black)),
+                  //       hintText: 'Write a blog content...',
+                  //       focusedBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(5),
+                  //         borderSide: BorderSide(
+                  //           width: 1,
+                  //           color: Colors.black,
+                  //         ),
+                  //       ),
+                  //     )),
+                  // ElevatedButton(
+                  //     onPressed: () {
+                  //       databaseRef
+                  //           .child(DateTime.now()
+                  //               .millisecondsSinceEpoch
+                  //               .toString())
+                  //           .set({
+                  //         "title":
+                  //             _myBlogController.titleController.text.toString(),
+                  //         "content": _myBlogController.contentController.text
+                  //             .toString()
+                  //       }).then((value) {
+                  //         Get.snackbar(
+                  //           'Blog is published',
+                  //           "",
+                  //           icon:
+                  //               const Icon(Icons.publish, color: Colors.black),
+                  //           backgroundColor: App_Colors.app_white_color,
+                  //           colorText: Colors.black,
+                  //           snackPosition: SnackPosition.TOP,
+                  //         );
+                  //       }).onError((error, stackTrace) {});
+                  //     },
+                  //     child: Text("Post"))
                 ],
               ),
             ),

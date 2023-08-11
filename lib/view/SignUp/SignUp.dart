@@ -12,22 +12,17 @@ import '../../constants/FontConstant/FontConstant.dart';
 import '../../controller/SignUpController/SignUpController.dart';
 import '../../functions/Custom Button/Login&signupButton.dart';
 
-
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
-  final ToggleObscured _toggleObscured = Get.put(ToggleObscured());
-  final SignUpController _signUpController = Get.put(SignUpController());
-  final EmailPasswordValidation _emailPasswordValidation =
-      Get.put(EmailPasswordValidation());
-
-  @override
   Widget build(BuildContext context) {
+    final ToggleObscured _toggleObscured = Get.put(ToggleObscured());
+
+    final SignUpController _signUpController = Get.put(SignUpController());
+
+    final EmailPasswordValidation _emailPasswordValidation =
+        Get.put(EmailPasswordValidation());
     var heightt = MediaQuery.of(context).size.height * 1;
 
     return Scaffold(
@@ -187,7 +182,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: heightt * 0.02,
                       ),
-                      
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -206,7 +200,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.offAll(() =>  LoginPage());
+                                Get.offAll(() => LoginPage());
                               },
                               child: FittedBox(
                                 child: Text(
@@ -225,7 +219,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           ],
                         ),
                       ),
-                  
                     ],
                   ),
                 ),
