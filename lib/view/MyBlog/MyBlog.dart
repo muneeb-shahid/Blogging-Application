@@ -15,7 +15,6 @@ class MyBlog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final databaseRef = FirebaseDatabase.instance.ref("Blog");
     var heightt = MediaQuery.of(context).size.height * 1;
     MyBlogController _myBlogController = Get.put(MyBlogController());
 
@@ -44,6 +43,9 @@ class MyBlog extends StatelessWidget {
                             letterSpacing: 0.5),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: heightt * 0.04,
                   ),
                   Lottie.asset(
                     "assets/images/BlogPage.json",
@@ -79,7 +81,7 @@ class MyBlog extends StatelessWidget {
                               ),
                             )),
                         SizedBox(
-                          height: heightt * 0.05,
+                          height: heightt * 0.03,
                         ),
                         TextFormField(
                             controller: _myBlogController.contentController,
