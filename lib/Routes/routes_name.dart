@@ -6,5 +6,9 @@ class RoutesName {
   static String Profile = "/Profile";
   static String MyBlog = "/MyBlog";
   static String HomePage = "/HomePage";
+  static String BlogFullPost = "/BlogFullPost";
+
+
+  
 
 }

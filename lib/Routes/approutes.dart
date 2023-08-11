@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../View/SignUp/SignUp.dart';
 import '../View/Welcome/Welcome.dart';
+import '../view/BlogFullPost/BlogFullPost.dart';
 import '../view/Home/home.dart';
 import '../view/Login/login.dart';
 import '../view/MyBlog/MyBlog.dart';
@@ -18,6 +19,7 @@ class AppRoutes {
     GetPage(name: RoutesName.Profile, page: () =>   Profile(),),
     GetPage(name: RoutesName.MyBlog, page: () =>     MyBlog(),),
     GetPage(name: RoutesName.HomePage, page: () =>     HomePage(),),
+    GetPage(name: RoutesName.BlogFullPost, page: () =>     BlogFullPost(),),
 
 
 

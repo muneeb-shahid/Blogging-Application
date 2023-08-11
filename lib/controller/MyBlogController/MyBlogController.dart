@@ -51,7 +51,8 @@ class MyBlogController extends GetxController {
     if (formKey.currentState!.validate()) {
       databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
         "title": titleController.text.toString(),
-        "content": contentController.text.toString()
+        "content": contentController.text.toString(),
+        "id": DateTime.now().millisecondsSinceEpoch.toString()
       }).then((value) {
         titleController.clear();
         contentController.clear();

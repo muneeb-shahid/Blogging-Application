@@ -1,11 +1,11 @@
-import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
-import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+import '../../constants/Color Constant/ColorConstant.dart';
+
+class BlogFullPost extends StatelessWidget {
+  BlogFullPost({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,18 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: App_Colors.app_background_color,
+        appBar: AppBar(
+            backgroundColor: App_Colors.app_background_color,
+            elevation: 0,
+            leading: InkWell(
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Get.back();
+              },
+            )),
         body: SafeArea(
           top: true,
           child: Padding(
@@ -34,35 +46,23 @@ class HomePage extends StatelessWidget {
                           return ListView.builder(
                             itemCount: snapshot.data!.snapshot.children.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 100,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(BlogFullPost());
-                                  },
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Text(
-                                        list[index]['id'].toString(),
-                                        style: TextStyle(
-                                            color: Colors.green, fontSize: 14),
-                                      ),
-                                      title: Text(
-                                        list[index]["title"],
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 14),
-                                      ),
-                                      subtitle: Text(
-                                        list[index]["content"],
-                                        overflow: TextOverflow.ellipsis,
-                                        softWrap: true,
-                                        maxLines: 3,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 12),
-                                      ),
-                                    ),
-                                  ),
+                              return ListTile(
+                                leading: Text(
+                                  list[index]['id'].toString(),
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 14),
                                 ),
+                                title: Text(
+                                  list[index]["title"],
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 14),
+                                ),
+                                subtitle: Text(
+                                  list[index]["content"],
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                ),
+                                trailing: Icon(Icons.favorite_border),
                               );
                             },
                           );
