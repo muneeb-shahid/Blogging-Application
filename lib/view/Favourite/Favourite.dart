@@ -15,7 +15,7 @@ class Favourite extends StatelessWidget {
       body: Obx(() {
         if (favouriteController.favorites.isEmpty) {
           return Center(
-            child: Text('No favorites added yet.'),
+            child: Text('No favorites added yet.',style: TextStyle(color: Colors.red),),
           );
         } else {
           return ListView.builder(

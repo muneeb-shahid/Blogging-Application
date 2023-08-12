@@ -4,9 +4,8 @@ import '../../constants/Color Constant/ColorConstant.dart';
 
 class BlogFullPost extends StatelessWidget {
   final dynamic blogData;
-
   BlogFullPost({
-    required this.blogData,
+    required this.blogData, 
   });
 
   @override

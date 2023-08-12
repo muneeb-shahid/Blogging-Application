@@ -41,7 +41,10 @@ class HomePage extends StatelessWidget {
                                 height: 100,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.to(BlogFullPost(blogData: list[index]));
+                                    Get.to(BlogFullPost(
+                                      blogData: list[index],
+                                    ));
+                                    // Get.to(BlogFullPost(blogData: list[index]));
                                   },
                                   child: Card(
                                     child: ListTile(
@@ -79,7 +82,6 @@ class HomePage extends StatelessWidget {
                                           );
                                         }),
                                       ),
- 
 
                                       leading: Text(
                                         list[index]['id'].toString(),
