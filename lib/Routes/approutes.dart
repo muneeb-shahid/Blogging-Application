@@ -19,7 +19,7 @@ class AppRoutes {
     GetPage(name: RoutesName.Profile, page: () =>   Profile(),),
     GetPage(name: RoutesName.MyBlog, page: () =>     MyBlog(),),
     GetPage(name: RoutesName.HomePage, page: () =>     HomePage(),),
-    GetPage(name: RoutesName.BlogFullPost, page: () =>     BlogFullPost(),),
+    // GetPage(name: RoutesName.BlogFullPost, page: () =>     BlogFullPost(blog: null,),),
 
 
 
