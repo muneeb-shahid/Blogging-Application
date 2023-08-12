@@ -1,3 +1,4 @@
+import 'package:blog_app/view/Favourite/Favourite.dart';
 import 'package:blog_app/view/MyBlog/MyBlog.dart';
 import 'package:blog_app/view/Profile/Profile.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +10,7 @@ class BottomNavController extends GetxController {
   int currentIndex = 0;
   final screens = [
     HomePage(),
-    Center(
-        child: Text(
-      "Favorite",
-      style: TextStyle(fontSize: 40, color: Colors.amber),
-    )),
+    Favourite(),
     MyBlog(),
     Profile(),
   ];

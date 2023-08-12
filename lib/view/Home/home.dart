@@ -1,4 +1,5 @@
 import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
+import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
 import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,6 +11,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ref = FirebaseDatabase.instance.ref("Blog");
+    final FavouriteController favouriteController =
+        Get.put(FavouriteController());
 
     return Scaffold(
         backgroundColor: App_Colors.app_background_color,
@@ -42,6 +45,42 @@ class HomePage extends StatelessWidget {
                                   },
                                   child: Card(
                                     child: ListTile(
+                                      // trailing: IconButton(
+                                      //   onPressed: () {
+                                      //     // Add or remove the item from favorites list when the button is pressed
+                                      //     favouriteController
+                                      //         .toggleFavorite(list[index]);
+                                      //   },
+                                      //   icon: Obx(() {
+                                      //     // Use Obx to reactively update the icon based on the item's favorite status
+                                      //     return Icon(Icons.favorite,
+                                      //         color: favouriteController
+                                      //                 .isFavorite(list[index])
+                                      //             ? Colors.red
+                                      //             : null);
+                                      //   }),
+                                      // ),
+
+                                      trailing: IconButton(
+                                        onPressed: () {
+                                          favouriteController
+                                              .toggleFavorite(list[index]);
+                                        },
+                                        icon: Obx(() {
+                                          return Icon(
+                                            favouriteController
+                                                    .isFavorite(list[index])
+                                                ? Icons.favorite
+                                                : Icons.favorite_border,
+                                            color: favouriteController
+                                                    .isFavorite(list[index])
+                                                ? Colors.red
+                                                : null,
+                                          );
+                                        }),
+                                      ),
+ 
+
                                       leading: Text(
                                         list[index]['id'].toString(),
                                         style: TextStyle(
