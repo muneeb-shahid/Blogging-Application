@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../constants/Color Constant/ColorConstant.dart';
 
 class BlogFullPost extends StatelessWidget {
-  BlogFullPost({super.key, });
+  BlogFullPost({super.key,data });
 
   @override
   Widget build(BuildContext context) {
