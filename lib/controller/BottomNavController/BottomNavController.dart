@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../view/Home/home.dart';
 
 class BottomNavController extends GetxController {
+  
   int currentIndex = 0;
   final screens = [
     HomePage(),

@@ -52,7 +52,7 @@ class MyBlogController extends GetxController {
       databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
         "title": titleController.text.toString(),
         "content": contentController.text.toString(),
-        "id": DateTime.now().millisecondsSinceEpoch.toString()
+        "id": DateTime.now().millisecondsSinceEpoch.toString(),
       }).then((value) {
         titleController.clear();
         contentController.clear();
@@ -68,4 +68,5 @@ class MyBlogController extends GetxController {
       }).onError((error, stackTrace) {});
     }
   }
+
 }

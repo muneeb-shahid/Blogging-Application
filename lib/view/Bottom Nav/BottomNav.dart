@@ -38,10 +38,11 @@ class BottomNav extends StatelessWidget {
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.favorite),
-                    icon: Icon(
+                icon: Icon(
                       Icons.favorite_border_outlined,
                       color: Colors.black,
                     ),
+                   
                     label: "Favorite",
                   ),
                   BottomNavigationBarItem(
