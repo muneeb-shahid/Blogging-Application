@@ -14,31 +14,40 @@ class CreateBlog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var heightt = MediaQuery.of(context).size.height * 1;
-    CreateBlogController _CreateBlogController = Get.put(CreateBlogController());
+    CreateBlogController _CreateBlogController =
+        Get.put(CreateBlogController());
 
     return Scaffold(
       backgroundColor: App_Colors.app_background_color,
-    
+      
       appBar: AppBar(
-        backgroundColor: App_Colors.app_background_color,
-        centerTitle: true,
-        elevation: 0,
-        title: FittedBox(
-          alignment: Alignment.center,
-          child: Center(
-            child: Text(
-              "Write a Blog",
-              style: TextStyle(
-                  color: App_Colors.app_black_color,
-                  fontSize: FontsConstants.heading_font_size.sp,
-                  fontFamily: FontsConstants.Philosopher,
-                  wordSpacing: 1,
-                  letterSpacing: 1),
+          backgroundColor: App_Colors.app_background_color,
+          centerTitle: true,
+          elevation: 0,
+          title: FittedBox(
+            alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                "Write a Blog",
+                style: TextStyle(
+                    color: App_Colors.app_black_color,
+                    fontSize: FontsConstants.heading_font_size.sp,
+                    fontFamily: FontsConstants.Philosopher,
+                    wordSpacing: 1,
+                    letterSpacing: 1),
+              ),
             ),
           ),
-        ),
-      ),
-    
+          leading: InkWell(
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
+            ),
+            onTap: () {
+              Get.back();
+            },
+          )),
+      
       body: SafeArea(
           top: true,
           child: SingleChildScrollView(

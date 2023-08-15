@@ -38,7 +38,8 @@ class SignUpPage extends StatelessWidget {
             onTap: () {
               Get.back();
             },
-          )),
+          )
+          ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -133,7 +134,6 @@ class SignUpPage extends StatelessWidget {
                           _signUpController.name.value = input!;
                         },
                       ),
-
                       SizedBox(
                         height: heightt * 0.04,
                       ),
@@ -151,13 +151,12 @@ class SignUpPage extends StatelessWidget {
                             prefixIcon: const Icon(Icons.email),
                             prefixIconColor: App_Colors.app_black_color,
                             hintText: 'Email',
-                            hintStyle:  TextStyle()),
+                            hintStyle: TextStyle()),
                         validator: _emailPasswordValidation.validateEmail,
                         onSaved: (input) {
                           _signUpController.email.value = input!;
                         },
                       ),
-
                       SizedBox(
                         height: heightt * 0.04,
                       ),
