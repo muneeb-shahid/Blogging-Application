@@ -12,11 +12,12 @@ double screenWidth = mediaQueryData.size.width * 1;
 
 class Drawer_Function {
   static drawer_list_function(
-      {required func, required iconn, required String text}) {
+      { func, required iconn, required String text}) {
     return Column(
       children: [
         GestureDetector(
           onTap: func,
+
           child: ListTile(
             leading: Icon(
               iconn,
@@ -32,6 +33,7 @@ class Drawer_Function {
                   letterSpacing: 1),
             ),
           ),
+        
         ),
         SizedBox(
           height: screenHeight * 0.002,

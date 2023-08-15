@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
             top: true,
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Column(
                   children: [
                     Stack(
@@ -82,26 +82,48 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: heightt * 0.05,
                     ),
-                    Text(
-                      _signUpController
-                          .name.value, // Display the user's name here
-                      style: TextStyle(
-                        fontSize: 20,
+
+                    ListTile(
+                      leading: Icon(
+                        Icons.person_2_outlined,
+                        color: App_Colors.app_white_color,
+                      ),
+                      title: Text(
+                        _signUpController.name.value,
+                        style: TextStyle(
+                            color: App_Colors.app_white_color,
+                            fontSize: FontsConstants.text_font_size.sp,
+                            fontFamily: FontsConstants.regular_font_family,
+                            wordSpacing: 1,
+                            letterSpacing: 1),
                       ),
                     ),
-                    SizedBox(
-                      height: heightt * 0.03,
-                    ),
-                    Text(
-                      _signUpController
-                          .email.value, // Display the user's name here
-                      style: TextStyle(
-                        fontSize: 20,
+
+                    ListTile(
+                      leading: Icon(
+                        Icons.email_outlined,
+                        color: App_Colors.app_white_color,
+                      ),
+                      title: Text(
+                        _signUpController.email.value,
+                        style: TextStyle(
+                            color: App_Colors.app_white_color,
+                            fontSize: FontsConstants.text_font_size.sp,
+                            fontFamily: FontsConstants.regular_font_family,
+                            wordSpacing: 1,
+                            letterSpacing: 1),
                       ),
                     ),
-                    SizedBox(
-                      height: heightt * 0.03,
-                    ),
+                    // Text(
+                    //   _signUpController
+                    //       .email.value, // Display the user's name here
+                    //   style: TextStyle(
+                    //     fontSize: 20,
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: heightt * 0.03,
+                    // ),
                     Divider(
                       thickness: 2,
                       color: App_Colors.app_white_color,
