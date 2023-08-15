@@ -1,8 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constants/Color Constant/ColorConstant.dart';
+import 'package:intl/intl.dart';
 
 class CreateBlogController extends GetxController {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -49,10 +49,15 @@ class CreateBlogController extends GetxController {
 
   publish() {
     if (formKey.currentState!.validate()) {
+      final now = DateTime.now();
+      final dateFormat =
+          DateFormat('yyyy-MM-dd'); 
+      final formattedDate = dateFormat.format(now);
       databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
         "title": titleController.text.toString(),
         "content": contentController.text.toString(),
         "id": DateTime.now().millisecondsSinceEpoch.toString(),
+        "date": formattedDate,
       }).then((value) {
         titleController.clear();
         contentController.clear();
@@ -68,5 +73,4 @@ class CreateBlogController extends GetxController {
       }).onError((error, stackTrace) {});
     }
   }
-
 }

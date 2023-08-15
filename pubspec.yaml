@@ -45,6 +45,7 @@ dependencies:
   permission_handler: ^10.4.3
   firebase_database: ^10.2.4
   shared_preferences: ^2.2.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

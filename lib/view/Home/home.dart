@@ -165,7 +165,7 @@ class HomePage extends StatelessWidget {
                                             )),
                                       ),
                                       leading: Text(
-                                        list[index]['id'].toString(),
+                                        list[index]['date'].toString(),
                                         style: TextStyle(
                                             color: Colors.green, fontSize: 14),
                                       ),
