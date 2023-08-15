@@ -101,7 +101,7 @@ class WelcomeScreen extends StatelessWidget {
                   height: heightt * 0.02,
                 ),
                 customButton(
-                    nextScreen: const SignUpPage(),
+                    nextScreen:  SignUpPage(),
                     innerColor: App_Colors.app_black_color,
                     textColor: App_Colors.app_white_color,
                     text: "Register"),

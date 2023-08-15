@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 class EmailPasswordValidation extends GetxController {
+ 
+
   String? validateEmail(String? formEmail) {
     if (formEmail == null || formEmail.isEmpty) {
       return 'E-mail address is required.';

@@ -1,7 +1,9 @@
 import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
 import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
 import 'package:blog_app/controller/ProfileController/ProfileController.dart';
+import 'package:blog_app/controller/SignUpController/SignUpController.dart';
 import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ class HomePage extends StatelessWidget {
         Get.put(FavouriteController());
 
     final ProfileController _profileController = Get.put(ProfileController());
+
     var heightt = MediaQuery.of(context).size.height * 1;
     var widthh = MediaQuery.of(context).size.width * 1;
 
@@ -27,79 +30,81 @@ class HomePage extends StatelessWidget {
           iconTheme: IconThemeData(color: App_Colors.app_black_color),
         ),
         drawer: Drawer(
-          backgroundColor: App_Colors.app_background_color,
+          backgroundColor: App_Colors.app_black_color,
           child: Column(
             children: [
               SafeArea(
                 top: true,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 40),
-                    child: Column(
-                      children: [
-                        Center(
-                          child: Column(
-                            children: [
-                              Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  Container(
-                                    child: GetBuilder<ProfileController>(
-                                      builder: (_) => _profileController
-                                                  .imageFile ==
-                                              null
-                                          ? const Image(
-                                              image: AssetImage(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Column(
+                          children: [
+                            Stack(
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                Container(
+                                  child: GetBuilder<ProfileController>(
+                                    builder: (_) => _profileController
+                                                .imageFile ==
+                                            null
+                                        ? Image(
+                                            color: App_Colors.app_white_color,
+                                            image: AssetImage(
                                               'assets/images/Profile-modified.png',
                                             ))
-                                          : ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(150.0),
-                                              child: Image.file(
-                                                _profileController.imageFile!,
-                                                height: heightt * 0.2,
-                                                width: widthh * 0.4,
-                                                fit: BoxFit.fill,
-                                              ),
+                                        : ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(150.0),
+                                            child: Image.file(
+                                              _profileController.imageFile!,
+                                              height: heightt * 0.2,
+                                              width: widthh * 0.4,
+                                              fit: BoxFit.fill,
                                             ),
-                                    ),
+                                          ),
                                   ),
-                                  Positioned(
-                                      child: IconButton(
-                                          onPressed: () => _profileController
-                                              .selectAndCropImage(),
-                                          icon: const Icon(
-                                            Icons.camera_alt,
-                                            color: Colors.black,
-                                            size: 50,
-                                          ))),
-                                ],
-                              ),
-                              ElevatedButton(
-                                  onPressed: _profileController.signOutUser,
-                                  child: const Text("logout")),
-                              SizedBox(
-                                height: heightt * 0.5,
-                              ),
-                              CircleAvatar(
-                                radius: 20,
-                                backgroundColor: App_Colors.app_white_color,
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.close_sharp,
-                                    color: App_Colors.app_black_color,
-                                  ),
-                                  onPressed: () {
-                                    Get.back();
-                                  },
                                 ),
-                              )
-                            ],
-                          ),
+                                Positioned(
+                                    child: IconButton(
+                                        onPressed: () => _profileController
+                                            .selectAndCropImage(),
+                                        icon: const Icon(
+                                          Icons.camera_alt,
+                                          color: Colors.white,
+                                          size: 50,
+                                        ))),
+                              ],
+                            ),
+                         
+
+                            SizedBox(
+                              height: heightt * 0.3,
+                            ),
+                            // ElevatedButton(
+                            //     onPressed: _profileController.signOutUser,
+                            //     child:  Text("logout")),
+                            // SizedBox(
+                            //   height: heightt * 0.3,
+                            // ),
+                            // CircleAvatar(
+                            //   backgroundColor: App_Colors.app_white_color,
+                            //   child: IconButton(
+                            //     icon: Icon(
+                            //       Icons.close_sharp,
+                            //       color: App_Colors.app_black_color,
+                            //     ),
+                            //     onPressed: () {
+                            //       Get.back();
+                            //     },
+                            //   ),
+                            // )
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

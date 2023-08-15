@@ -1,8 +1,8 @@
+import 'package:blog_app/Functions/Email&PasswordValidation/Email_Password_Validation.dart';
 import 'package:blog_app/View/Login/login.dart';
 import 'package:blog_app/constants/Color%20Constant/ColorConstant.dart';
 import 'package:blog_app/controller/ToggleObscured/ToggleObscured.dart';
 import 'package:blog_app/functions/AppImage%20&%20Title/AppImage%20&%20Title.dart';
-import 'package:blog_app/functions/Email&PasswordValidation/Email_Password_Validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -97,7 +97,7 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: heightt * 0.05,
+                height: heightt * 0.03,
               ),
               Lottie.asset(
                 "assets/images/login-signup.json",
@@ -106,13 +106,37 @@ class SignUpPage extends StatelessWidget {
                 animate: true,
               ),
               SizedBox(
-                height: heightt * 0.05,
+                height: heightt * 0.03,
               ),
               Obx(
                 () => Form(
                   key: _signUpController.formKey,
                   child: Column(
                     children: <Widget>[
+                      TextFormField(
+                        controller:
+                            _signUpController.NameTextEditingController.clear(),
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: App_Colors.app_black_color,
+                            )),
+                            prefixIcon: Icon(Icons.person),
+                            prefixIconColor: App_Colors.app_black_color,
+                            hintText: 'Name',
+                            hintStyle: TextStyle()),
+                        validator: _signUpController.validateName,
+                        onSaved: (input) {
+                          _signUpController.name.value = input!;
+                        },
+                      ),
+
+                      SizedBox(
+                        height: heightt * 0.04,
+                      ),
                       TextFormField(
                         controller: _signUpController.EmailTextEditingController
                             .clear(),
@@ -127,12 +151,13 @@ class SignUpPage extends StatelessWidget {
                             prefixIcon: const Icon(Icons.email),
                             prefixIconColor: App_Colors.app_black_color,
                             hintText: 'Email',
-                            hintStyle: const TextStyle()),
+                            hintStyle:  TextStyle()),
                         validator: _emailPasswordValidation.validateEmail,
                         onSaved: (input) {
                           _signUpController.email.value = input!;
                         },
                       ),
+
                       SizedBox(
                         height: heightt * 0.04,
                       ),
