@@ -29,7 +29,10 @@ class Profile extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: App_Colors.app_background_color,
-      body: SafeArea(
+    
+      body:
+    
+       SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: Padding(
@@ -83,6 +86,7 @@ class Profile extends StatelessWidget {
           ),
         ),
       ),
+    
     );
   }
 }

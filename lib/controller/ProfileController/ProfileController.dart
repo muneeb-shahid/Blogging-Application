@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../Constants/FontConstant/FontConstant.dart';
+import '../../View/welcome/welcome.dart';
 import '../../constants/Color Constant/ColorConstant.dart';
 
 var mediaQueryData = Get.mediaQuery;
@@ -15,6 +17,15 @@ double screenHeight = mediaQueryData.size.height * 1;
 double screenWidth = mediaQueryData.size.width * 1;
 
 class ProfileController extends GetxController {
+   void signOutUser() async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        Get.offAll(const WelcomeScreen());
+        print('User signed out.');
+      } catch (e) {
+        print('Error signing out: $e');
+      }
+    }
   File? imageFile;
 
   final picker = ImagePicker();

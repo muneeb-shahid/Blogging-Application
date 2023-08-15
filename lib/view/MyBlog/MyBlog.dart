@@ -20,33 +20,36 @@ class MyBlog extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: App_Colors.app_background_color,
+    
+      appBar: AppBar(
+        backgroundColor: App_Colors.app_background_color,
+        centerTitle: true,
+        elevation: 0,
+        title: FittedBox(
+          alignment: Alignment.center,
+          child: Center(
+            child: Text(
+              "Write a Blog",
+              style: TextStyle(
+                  color: App_Colors.app_black_color,
+                  fontSize: FontsConstants.heading_font_size.sp,
+                  fontFamily: FontsConstants.Philosopher,
+                  wordSpacing: 1,
+                  letterSpacing: 1),
+            ),
+          ),
+        ),
+      ),
+    
       body: SafeArea(
           top: true,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(10, 40, 10, 20),
+              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FittedBox(
-                    alignment: Alignment.center,
-                    child: Center(
-                      child: Text(
-                        "Write a Blog",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: App_Colors.app_black_color,
-                            fontSize: FontsConstants.heading_font_size.sp,
-                            fontFamily: FontsConstants.Philosopher,
-                            wordSpacing: 1,
-                            letterSpacing: 0.5),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: heightt * 0.04,
-                  ),
                   Lottie.asset(
                     "assets/images/BlogPage.json",
                     repeat: true,
