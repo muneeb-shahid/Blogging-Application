@@ -9,13 +9,14 @@ import '../../Constants/FontConstant/FontConstant.dart';
 import '../../Controller/LoginController/LoginController.dart';
 import '../../Functions/AppImage & Title/AppImage & Title.dart';
 import '../../Functions/Email&PasswordValidation/Email_Password_Validation.dart';
+import '../../controller/SignUpController/SignUpController.dart';
 import '../../functions/Custom Button/Login&signupButton.dart';
-
 
 class LoginPage extends StatelessWidget {
   final EmailPasswordValidation _emailPasswordValidation =
       Get.put(EmailPasswordValidation());
   final LoginController _loginController = Get.put(LoginController());
+  SignUpController _signUpController = Get.put(SignUpController());
 
   LoginPage({super.key});
 
@@ -117,6 +118,9 @@ class LoginPage extends StatelessWidget {
                             prefixIconColor: App_Colors.app_black_color,
                             hintText: 'Email',
                             hintStyle: const TextStyle()),
+                        onSaved: (input) {
+                          _signUpController.saveEmail(input!);
+                        },
                       ),
                       SizedBox(
                         height: heightt * 0.04,
@@ -186,7 +190,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.to(() =>  SignUpPage());
+                                Get.to(() => SignUpPage());
                               },
                               child: FittedBox(
                                 child: Text(

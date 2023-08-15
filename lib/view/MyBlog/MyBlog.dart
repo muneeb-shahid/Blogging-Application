@@ -17,9 +17,6 @@ class MyBlog extends StatelessWidget {
     final FavouriteController favouriteController =
         Get.put(FavouriteController());
 
-    final ProfileController _profileController = Get.put(ProfileController());
-    var heightt = MediaQuery.of(context).size.height * 1;
-    var widthh = MediaQuery.of(context).size.width * 1;
 
     return Scaffold(
       

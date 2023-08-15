@@ -21,6 +21,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ref = FirebaseDatabase.instance.ref("Blog");
+    final nameEmail = FirebaseDatabase.instance.ref("email");
+
     final FavouriteController favouriteController =
         Get.put(FavouriteController());
 
@@ -82,14 +84,54 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: heightt * 0.05,
                     ),
+                    StreamBuilder(
+                        stream: nameEmail.onValue,
+                        builder: (
+                          context,
+                          AsyncSnapshot<DatabaseEvent> snapshot,
+                        ) {
+                          try {
+                           
+                            List<dynamic> list = [];
+                            list.clear();
 
+                            return ListView.builder(
+                              itemCount:
+                                  snapshot.data!.snapshot.children.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(
+                                    list[index]["name"].toString(),
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 14),
+                                  ),
+                                  subtitle: Text(
+                                    list[index]["email"].toString(),
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 12),
+                                  ),
+                                );
+                              },
+                            );
+                          } catch (e) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: CircularProgressIndicator(
+                                      color: App_Colors.app_green_color),
+                                ),
+                              ],
+                            );
+                          }
+                        }),
                     ListTile(
                       leading: Icon(
                         Icons.person_2_outlined,
                         color: App_Colors.app_white_color,
                       ),
                       title: Text(
-                        _signUpController.name.value,
+                        _signUpController.name.value.toUpperCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,
@@ -98,14 +140,13 @@ class HomePage extends StatelessWidget {
                             letterSpacing: 1),
                       ),
                     ),
-
                     ListTile(
                       leading: Icon(
                         Icons.email_outlined,
                         color: App_Colors.app_white_color,
                       ),
                       title: Text(
-                        _signUpController.email.value,
+                        _signUpController.email.value.toLowerCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,
@@ -114,22 +155,9 @@ class HomePage extends StatelessWidget {
                             letterSpacing: 1),
                       ),
                     ),
-                    // Text(
-                    //   _signUpController
-                    //       .email.value, // Display the user's name here
-                    //   style: TextStyle(
-                    //     fontSize: 20,
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: heightt * 0.03,
-                    // ),
                     Divider(
                       thickness: 2,
                       color: App_Colors.app_white_color,
-                    ),
-                    SizedBox(
-                      height: heightt * 0.01,
                     ),
                     Drawer_Function.drawer_list_function(
                       func: () => Get.to(CreateBlog()),
@@ -147,14 +175,18 @@ class HomePage extends StatelessWidget {
                       text: "Log out",
                     ),
                     SizedBox(
-                      height: heightt * 0.2,
+                      height: heightt * 0.1,
                     ),
                     CircleAvatar(
+                      radius: 25,
                       backgroundColor: App_Colors.app_white_color,
                       child: IconButton(
-                        icon: Icon(
-                          Icons.close_sharp,
-                          color: App_Colors.app_black_color,
+                        icon: Center(
+                          child: Icon(
+                            Icons.close_sharp,
+                            // size: 90,
+                            color: App_Colors.app_black_color,
+                          ),
                         ),
                         onPressed: () {
                           Get.back();

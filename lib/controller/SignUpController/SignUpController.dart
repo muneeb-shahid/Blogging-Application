@@ -1,5 +1,6 @@
 import 'package:blog_app/view/Home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,8 @@ import '../../view/Bottom Nav/BottomNav.dart';
 import '../../view/Login/login.dart';
 
 class SignUpController extends GetxController {
+  final databaseRef = FirebaseDatabase.instance.ref("email");
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   get formKey => _formKey;
   final TextEditingController _nameTextEditingController =
@@ -39,13 +42,26 @@ class SignUpController extends GetxController {
     name.value = input;
   }
 
-   void saveEmail(String input) {
+  void saveEmail(String input) {
     email.value = input;
   }
 
   void register() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
+      databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+        "name": NameTextEditingController.text.toString(),
+        "email": EmailTextEditingController.text.toString(),
+      }).then((value) {
+        Get.snackbar(
+          "Successfully",
+          'Account is Created',
+          icon: Icon(Icons.account_circle_outlined, color: Colors.black),
+          backgroundColor: App_Colors.app_white_color,
+          colorText: Colors.black,
+          snackPosition: SnackPosition.TOP,
+        );
+      }).onError((error, stackTrace) {});
 
       try {
         Get.to(BottomNav());
