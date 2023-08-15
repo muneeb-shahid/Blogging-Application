@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../constants/Color Constant/ColorConstant.dart';
 
-class MyBlogController extends GetxController {
+class CreateBlogController extends GetxController {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   get formKey => _formKey;
 

@@ -1,126 +1,207 @@
-import 'package:blog_app/controller/MyBlogController/MyBlogController.dart';
-import 'package:blog_app/functions/Custom%20Button/Login&signupButton.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
+import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
+import 'package:blog_app/controller/ProfileController/ProfileController.dart';
+import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-
-import '../../Constants/Color Constant/ColorConstant.dart';
-import '../../Constants/FontConstant/FontConstant.dart';
 
 class MyBlog extends StatelessWidget {
   const MyBlog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ref = FirebaseDatabase.instance.ref("Blog");
+    final FavouriteController favouriteController =
+        Get.put(FavouriteController());
+
+    final ProfileController _profileController = Get.put(ProfileController());
     var heightt = MediaQuery.of(context).size.height * 1;
-    MyBlogController _myBlogController = Get.put(MyBlogController());
+    var widthh = MediaQuery.of(context).size.width * 1;
 
     return Scaffold(
-      backgroundColor: App_Colors.app_background_color,
-    
-      appBar: AppBar(
         backgroundColor: App_Colors.app_background_color,
-        centerTitle: true,
-        elevation: 0,
-        title: FittedBox(
-          alignment: Alignment.center,
-          child: Center(
-            child: Text(
-              "Write a Blog",
-              style: TextStyle(
-                  color: App_Colors.app_black_color,
-                  fontSize: FontsConstants.heading_font_size.sp,
-                  fontFamily: FontsConstants.Philosopher,
-                  wordSpacing: 1,
-                  letterSpacing: 1),
-            ),
-          ),
+        appBar: AppBar(
+          backgroundColor: App_Colors.app_background_color,
+          elevation: 0,
+          iconTheme: IconThemeData(color: App_Colors.app_black_color),
         ),
-      ),
-    
-      body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Lottie.asset(
-                    "assets/images/BlogPage.json",
-                    repeat: true,
-                    width: double.infinity,
-                    reverse: false,
-                    animate: true,
-                  ),
-                  SizedBox(
-                    height: heightt * 0.05,
-                  ),
-                  Form(
-                    key: _myBlogController.formKey,
+        drawer: Drawer(
+          backgroundColor: App_Colors.app_background_color,
+          child: Column(
+            children: [
+              SafeArea(
+                top: true,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 40),
                     child: Column(
                       children: [
-                        TextFormField(
-                            controller: _myBlogController.titleController,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                            validator: _myBlogController.validateTitle,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: App_Colors.app_black_color)),
-                              hintText: 'Write a title of blog...',
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide(
-                                  width: 2,
-                                  color: App_Colors.app_black_color,
-                                ),
+                        Center(
+                          child: Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.bottomRight,
+                                children: [
+                                  Container(
+                                    child: GetBuilder<ProfileController>(
+                                      builder: (_) => _profileController
+                                                  .imageFile ==
+                                              null
+                                          ? const Image(
+                                              image: AssetImage(
+                                              'assets/images/Profile-modified.png',
+                                            ))
+                                          : ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(150.0),
+                                              child: Image.file(
+                                                _profileController.imageFile!,
+                                                height: heightt * 0.2,
+                                                width: widthh * 0.4,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      child: IconButton(
+                                          onPressed: () => _profileController
+                                              .selectAndCropImage(),
+                                          icon: const Icon(
+                                            Icons.camera_alt,
+                                            color: Colors.black,
+                                            size: 50,
+                                          ))),
+                                ],
                               ),
-                            )),
-                        SizedBox(
-                          height: heightt * 0.03,
+                              ElevatedButton(
+                                  onPressed: _profileController.signOutUser,
+                                  child: const Text("logout")),
+                              SizedBox(
+                                height: heightt * 0.5,
+                              ),
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: App_Colors.app_white_color,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.close_sharp,
+                                    color: App_Colors.app_black_color,
+                                  ),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                        TextFormField(
-                            controller: _myBlogController.contentController,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                            validator: _myBlogController.validateContent,
-                            maxLines: 4,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: App_Colors.app_black_color)),
-                              hintText: 'Write a blog content...',
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide(
-                                  width: 2,
-                                  color: App_Colors.app_black_color,
-                                ),
-                              ),
-                            )),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: heightt * 0.04,
-                  ),
-                  customLogin_SignupButton(
-                      innerColor: App_Colors.app_black_color,
-                      textColor: App_Colors.app_white_color,
-                      text: "Publish",
-                      func: () => _myBlogController.publish()),
-                ],
+                ),
               ),
-            ),
-          )),
-    );
+            ],
+          ),
+        ),
+        body: SafeArea(
+          top: true,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+            child: Column(children: [
+              Expanded(
+                  child: StreamBuilder(
+                      stream: ref.onValue,
+                      builder: (
+                        context,
+                        AsyncSnapshot<DatabaseEvent> snapshot,
+                      ) {
+                        try {
+                          Map<dynamic, dynamic> map =
+                              snapshot.data?.snapshot.value as dynamic;
+                          List<dynamic> list = [];
+                          list.clear();
+                          list = map.values.toList();
+
+                          return ListView.builder(
+                            itemCount: snapshot.data!.snapshot.children.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 100,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(BlogFullPost(
+                                      blogData: list[index],
+                                    ));
+                                  },
+                                  child: Card(
+                                    child: ListTile(
+                                      trailing: IconButton(
+                                        onPressed: () {
+                                          Map<String, dynamic> selectedBlog =
+                                              Map.from(list[index]);
+                                          if (favouriteController.tempList.any(
+                                              (item) =>
+                                                  item["title"] ==
+                                                  selectedBlog["title"])) {
+                                            favouriteController
+                                                .removeFavourite(selectedBlog);
+                                          } else {
+                                            favouriteController
+                                                .addToFavourite(selectedBlog);
+                                          }
+                                        },
+                                        icon: Obx(() => Icon(
+                                              Icons.favorite,
+                                              color: favouriteController
+                                                      .tempList
+                                                      .any((item) =>
+                                                          item["title"] ==
+                                                          list[index]["title"])
+                                                  ? Colors.red
+                                                  : Colors.black,
+                                            )),
+                                      ),
+                                      leading: Text(
+                                        list[index]['id'].toString(),
+                                        style: TextStyle(
+                                            color: Colors.green, fontSize: 14),
+                                      ),
+                                      title: Text(
+                                        list[index]["title"].toString(),
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 14),
+                                      ),
+                                      subtitle: Text(
+                                        list[index]["content"].toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: true,
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 12),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        } catch (e) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: CircularProgressIndicator(
+                                    color: App_Colors.app_green_color),
+                              ),
+                            ],
+                          );
+                        }
+                      }))
+            ]),
+          ),
+        ));
   }
 }

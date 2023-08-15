@@ -7,11 +7,10 @@ import '../../Constants/Color Constant/ColorConstant.dart';
 class BottomNav extends StatelessWidget {
   BottomNav({super.key});
 
-  final BottomNavController _bottomNavController =
-      Get.put(BottomNavController());
-
   @override
   Widget build(BuildContext context) {
+    var heightt = MediaQuery.of(context).size.height * 1;
+    var widthh = MediaQuery.of(context).size.width * 1;
     return GetBuilder<BottomNavController>(
         init: BottomNavController(),
         builder: (bottomNavController) {
@@ -27,7 +26,7 @@ class BottomNav extends StatelessWidget {
                 showUnselectedLabels: false,
                 currentIndex: bottomNavController.currentIndex,
                 onTap: bottomNavController.changeIndex,
-                items:  [
+                items: [
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.home),
                     icon: Icon(
@@ -38,12 +37,25 @@ class BottomNav extends StatelessWidget {
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.favorite),
-                icon: Icon(
+                    icon: Icon(
                       Icons.favorite_border_outlined,
                       color: Colors.black,
                     ),
-                   
                     label: "Favorite",
+                  ),
+                  BottomNavigationBarItem(
+                    activeIcon: Image(
+                      width: widthh * 0.07,
+                      image: AssetImage(
+                          "assets/images/create blog in black background.png"),
+                      color: Colors.black,
+                    ),
+                    icon: Image(
+                      width: widthh * 0.07,
+                      image: AssetImage("assets/images/create blog.png"),
+                      color: Colors.black,
+                    ),
+                    label: "Create Blog",
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.article),
@@ -52,14 +64,6 @@ class BottomNav extends StatelessWidget {
                       color: Colors.black,
                     ),
                     label: "My Blog",
-                  ),
-                  BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.person_2),
-                    icon: Icon(
-                      Icons.person_2_outlined,
-                      color: Colors.black,
-                    ),
-                    label: "Profile",
                   ),
                 ],
               ));

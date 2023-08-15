@@ -3,12 +3,8 @@ class RoutesName {
   static String LoginPage = '/LoginPage';
   static String SignUpPage = "/SignUpPage";
   static String BottomNav = "/BottomNav";
-  static String Profile = "/Profile";
-  static String MyBlog = "/MyBlog";
+  static String CreateBlog = "/CreateBlog";
   static String HomePage = "/HomePage";
   static String BlogFullPost = "/BlogFullPost";
-
-
-  
-
+  static String MyBlog = "/MyBlog";
 }

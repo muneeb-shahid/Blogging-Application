@@ -1,7 +1,6 @@
+import 'package:blog_app/view/CreateBlog/CreateBlog.dart';
 import 'package:blog_app/view/Favourite/Favourite.dart';
 import 'package:blog_app/view/MyBlog/MyBlog.dart';
-import 'package:blog_app/view/Profile/Profile.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../view/Home/home.dart';
@@ -12,8 +11,8 @@ class BottomNavController extends GetxController {
   final screens = [
     HomePage(),
     Favourite(),
+    CreateBlog(),
     MyBlog(),
-    Profile(),
   ];
 
   void changeIndex(int index) {
