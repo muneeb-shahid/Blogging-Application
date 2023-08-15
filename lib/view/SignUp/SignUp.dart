@@ -38,8 +38,7 @@ class SignUpPage extends StatelessWidget {
             onTap: () {
               Get.back();
             },
-          )
-          ),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -131,7 +130,7 @@ class SignUpPage extends StatelessWidget {
                             hintStyle: TextStyle()),
                         validator: _signUpController.validateName,
                         onSaved: (input) {
-                          _signUpController.name.value = input!;
+                          _signUpController.saveName(input!);
                         },
                       ),
                       SizedBox(
@@ -154,7 +153,7 @@ class SignUpPage extends StatelessWidget {
                             hintStyle: TextStyle()),
                         validator: _emailPasswordValidation.validateEmail,
                         onSaved: (input) {
-                          _signUpController.email.value = input!;
+                          _signUpController.saveEmail(input!);
                         },
                       ),
                       SizedBox(

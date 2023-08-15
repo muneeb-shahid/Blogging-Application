@@ -35,6 +35,14 @@ class SignUpController extends GetxController {
     return null;
   }
 
+  void saveName(String input) {
+    name.value = input;
+  }
+
+   void saveEmail(String input) {
+    email.value = input;
+  }
+
   void register() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();

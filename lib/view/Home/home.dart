@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
         Get.put(FavouriteController());
 
     final ProfileController _profileController = Get.put(ProfileController());
+    final SignUpController _signUpController = Get.put(SignUpController());
 
     var heightt = MediaQuery.of(context).size.height * 1;
     var widthh = MediaQuery.of(context).size.width * 1;
@@ -82,7 +83,8 @@ class HomePage extends StatelessWidget {
                       height: heightt * 0.05,
                     ),
                     Text(
-                      "name",
+                      _signUpController
+                          .name.value, // Display the user's name here
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -91,7 +93,8 @@ class HomePage extends StatelessWidget {
                       height: heightt * 0.03,
                     ),
                     Text(
-                      "email",
+                      _signUpController
+                          .email.value, // Display the user's name here
                       style: TextStyle(
                         fontSize: 20,
                       ),
