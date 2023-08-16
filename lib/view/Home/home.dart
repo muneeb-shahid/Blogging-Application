@@ -1,11 +1,13 @@
 import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
 import 'package:blog_app/Constants/FontConstant/FontConstant.dart';
 import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
+import 'package:blog_app/controller/HomeController/HomeController.dart';
 import 'package:blog_app/controller/ProfileController/ProfileController.dart';
 import 'package:blog_app/controller/SignUpController/SignUpController.dart';
 import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
 import 'package:blog_app/view/CreateBlog/CreateBlog.dart';
 import 'package:blog_app/view/MyBlog/MyBlog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,11 +23,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ref = FirebaseDatabase.instance.ref("Blog");
-    final nameEmail = FirebaseDatabase.instance.ref("email");
+  final User _user = FirebaseAuth.instance.currentUser!;
+
 
     final FavouriteController favouriteController =
         Get.put(FavouriteController());
 
+    HomeController homeController = Get.put(HomeController());
     final ProfileController _profileController = Get.put(ProfileController());
     final SignUpController _signUpController = Get.put(SignUpController());
 
@@ -84,54 +88,59 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: heightt * 0.05,
                     ),
-                    StreamBuilder(
-                        stream: nameEmail.onValue,
-                        builder: (
-                          context,
-                          AsyncSnapshot<DatabaseEvent> snapshot,
-                        ) {
-                          try {
-                           
-                            List<dynamic> list = [];
-                            list.clear();
 
-                            return ListView.builder(
-                              itemCount:
-                                  snapshot.data!.snapshot.children.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  title: Text(
-                                    list[index]["name"].toString(),
-                                    style: TextStyle(
-                                        color: Colors.red, fontSize: 14),
-                                  ),
-                                  subtitle: Text(
-                                    list[index]["email"].toString(),
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 12),
-                                  ),
-                                );
-                              },
-                            );
-                          } catch (e) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Center(
-                                  child: CircularProgressIndicator(
-                                      color: App_Colors.app_green_color),
-                                ),
-                              ],
-                            );
-                          }
-                        }),
+                    // StreamBuilder(
+                    //     stream: nameEmail.onValue,
+                    //     builder: (
+                    //       context,
+                    //       AsyncSnapshot<DatabaseEvent> snapshot,
+                    //     ) {
+                    //   try {
+                    //         Map<dynamic, dynamic> map =
+                    //             snapshot.data?.snapshot.value as dynamic;
+                    //         List<dynamic> list = [];
+                    //         list.clear();
+                    //         list = map.values.toList();
+
+                    //         return ListView.builder(
+                    //           itemCount:
+                    //               snapshot.data!.snapshot.children.length,
+                    //           itemBuilder: (context, index) {
+                    //             return ListTile(
+                    //               title: Text(
+                    //                 list[index]["name"].toString(),
+                    //                 style: TextStyle(
+                    //                     color: Colors.red, fontSize: 14),
+                    //               ),
+                    //               subtitle: Text(
+                    //                 list[index]["email"].toString(),
+                    //                 style: TextStyle(
+                    //                     color: Colors.black, fontSize: 12),
+                    //               ),
+                    //             );
+                    //           },
+                    //         );
+                    //       } catch (e) {
+                    //       return  Column(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Center(
+                    //               child: CircularProgressIndicator(
+                    //                   color: App_Colors.app_green_color),
+                    //             ),
+                    //           ],
+                    //         );
+                    //       }
+                    //     }),
+
                     ListTile(
                       leading: Icon(
                         Icons.person_2_outlined,
                         color: App_Colors.app_white_color,
                       ),
                       title: Text(
-                        _signUpController.name.value.toUpperCase(),
+                 _user.displayName ?? _signUpController.name.value.toUpperCase(),
+                        // _signUpController.name.value.toUpperCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,
@@ -146,7 +155,8 @@ class HomePage extends StatelessWidget {
                         color: App_Colors.app_white_color,
                       ),
                       title: Text(
-                        _signUpController.email.value.toLowerCase(),
+                       _user.email ?? _signUpController.email.value.toLowerCase(),
+                        // _signUpController.email.value.toLowerCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,

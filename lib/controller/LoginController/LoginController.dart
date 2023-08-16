@@ -1,3 +1,4 @@
+import 'package:blog_app/controller/SignUpController/SignUpController.dart';
 import 'package:blog_app/view/Bottom%20Nav/BottomNav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,19 @@ import 'package:get/get.dart';
 
 import '../../Constants/Color Constant/ColorConstant.dart';
 
-
 class LoginController extends GetxController {
+  SignUpController _signUpController = Get.put(SignUpController());
+  TextEditingController _loginEmail = TextEditingController();
+  get LoginEmail => _loginEmail;
+  TextEditingController _loginPassowrd = TextEditingController();
+  get LoginPassowrd => _loginPassowrd;
+
+  final email_ = ''.obs;
+
+  saveEmail(String input) {
+    email_.value = input;
+  }
+
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
@@ -24,10 +36,15 @@ class LoginController extends GetxController {
         // Start loading
         loadingController(true);
 
-        final user = await _auth.signInWithEmailAndPassword(
+        final userCredential = await _auth.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
+        if (userCredential.user != null &&
+            _signUpController.name.value.isNotEmpty) {
+          await userCredential.user!
+              .updateProfile(displayName: _signUpController.name.value);
+        }
 
         Get.offAll(() => BottomNav());
       } on FirebaseAuthException catch (e) {
@@ -38,9 +55,8 @@ class LoginController extends GetxController {
           Get.snackbar(
             'Error',
             "No User Found for that Email",
-            icon:  const Icon( Icons.   error_outline, color: Colors.black),
+            icon: const Icon(Icons.error_outline, color: Colors.black),
             backgroundColor: App_Colors.app_white_color,
-
             colorText: Colors.black,
             snackPosition: SnackPosition.TOP,
           );
@@ -50,7 +66,7 @@ class LoginController extends GetxController {
           Get.snackbar(
             'Error',
             "Wrong Password Provided by User",
-              icon: const Icon(  Icons.  cancel_outlined, color: Colors.black),
+            icon: const Icon(Icons.cancel_outlined, color: Colors.black),
             backgroundColor: App_Colors.app_white_color,
             colorText: Colors.black,
             snackPosition: SnackPosition.TOP,

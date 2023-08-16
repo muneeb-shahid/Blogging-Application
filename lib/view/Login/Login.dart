@@ -15,7 +15,7 @@ import '../../functions/Custom Button/Login&signupButton.dart';
 class LoginPage extends StatelessWidget {
   final EmailPasswordValidation _emailPasswordValidation =
       Get.put(EmailPasswordValidation());
-  final LoginController _loginController = Get.put(LoginController());
+   LoginController _loginController = Get.put(LoginController());
   SignUpController _signUpController = Get.put(SignUpController());
 
   LoginPage({super.key});
@@ -102,9 +102,12 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       TextFormField(
-                        style: const TextStyle(
+                        controller: _signUpController.EmailTextEditingController
+                            .clear(),
+                        style: TextStyle(
                           color: Colors.black,
                         ),
+                         
                         validator: _emailPasswordValidation.validateEmail,
                         onChanged: (value) {
                           _loginController.email = value;
@@ -117,10 +120,7 @@ class LoginPage extends StatelessWidget {
                             prefixIcon: const Icon(Icons.email),
                             prefixIconColor: App_Colors.app_black_color,
                             hintText: 'Email',
-                            hintStyle: const TextStyle()),
-                        onSaved: (input) {
-                          _signUpController.saveEmail(input!);
-                        },
+                            hintStyle: TextStyle()),
                       ),
                       SizedBox(
                         height: heightt * 0.04,
@@ -128,6 +128,8 @@ class LoginPage extends StatelessWidget {
                       Obx(
                         // Use Obx to observe the _isObscured variable
                         () => TextFormField(
+                           controller: _signUpController
+                            .PasswordTextEditingController.clear(),
                           style: const TextStyle(
                             color: Colors.black,
                           ),

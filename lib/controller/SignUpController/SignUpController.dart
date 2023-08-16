@@ -9,7 +9,7 @@ import '../../view/Bottom Nav/BottomNav.dart';
 import '../../view/Login/login.dart';
 
 class SignUpController extends GetxController {
-  final databaseRef = FirebaseDatabase.instance.ref("email");
+  // final databaseRef = FirebaseDatabase.instance.ref("email");
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   get formKey => _formKey;
@@ -49,23 +49,24 @@ class SignUpController extends GetxController {
   void register() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
-        "name": NameTextEditingController.text.toString(),
-        "email": EmailTextEditingController.text.toString(),
-      }).then((value) {
-        Get.snackbar(
-          "Successfully",
-          'Account is Created',
-          icon: Icon(Icons.account_circle_outlined, color: Colors.black),
-          backgroundColor: App_Colors.app_white_color,
-          colorText: Colors.black,
-          snackPosition: SnackPosition.TOP,
-        );
-      }).onError((error, stackTrace) {});
 
       try {
+        // databaseRef
+        //     .child(DateTime.now().millisecondsSinceEpoch.toString())
+        //     .set({
+        //   "name": _nameTextEditingController.text.toString(),
+        //   "email": _emailTextEditingController.text.toString(),
+        // }).then((value) {
+        //   Get.snackbar(
+        //     "Successfully",
+        //     'Account is Created',
+        //     icon: Icon(Icons.account_circle_outlined, color: Colors.black),
+        //     backgroundColor: App_Colors.app_white_color,
+        //     colorText: Colors.black,
+        //     snackPosition: SnackPosition.TOP,
+        //   );
+        // }).onError((error, stackTrace) {});
         Get.to(BottomNav());
-
         final User? user = (await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: email.value, password: password.value)) as User?;
