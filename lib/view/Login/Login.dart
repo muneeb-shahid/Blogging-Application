@@ -101,6 +101,7 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+
                       TextFormField(
                         controller: _signUpController.EmailTextEditingController
                             .clear(),
@@ -122,6 +123,7 @@ class LoginPage extends StatelessWidget {
                             hintText: 'Email',
                             hintStyle: TextStyle()),
                       ),
+                      
                       SizedBox(
                         height: heightt * 0.04,
                       ),

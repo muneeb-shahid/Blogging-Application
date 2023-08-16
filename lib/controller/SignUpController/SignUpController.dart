@@ -51,45 +51,77 @@ class SignUpController extends GetxController {
       formKey.currentState!.save();
 
       try {
-        // databaseRef
-        //     .child(DateTime.now().millisecondsSinceEpoch.toString())
-        //     .set({
-        //   "name": _nameTextEditingController.text.toString(),
-        //   "email": _emailTextEditingController.text.toString(),
-        // }).then((value) {
-        //   Get.snackbar(
-        //     "Successfully",
-        //     'Account is Created',
-        //     icon: Icon(Icons.account_circle_outlined, color: Colors.black),
-        //     backgroundColor: App_Colors.app_white_color,
-        //     colorText: Colors.black,
-        //     snackPosition: SnackPosition.TOP,
-        //   );
-        // }).onError((error, stackTrace) {});
-        Get.to(BottomNav());
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: email.value, password: password.value);
         User user = userCredential.user!;
         user.sendEmailVerification();
+        Get.offAll(BottomNav());
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           print("Account Already Exists. \nPlease Login!");
-          Get.offAll(LoginPage());
           Get.snackbar(
             'Account Already Exists. ', //Snackbar title
             'Please Login!', // Snackbar message
             icon: const Icon(Icons.error_outline, color: Colors.black),
             backgroundColor: App_Colors.app_white_color,
-
             colorText: Colors.black,
             snackPosition: SnackPosition.TOP,
-            //  colorText: Colors.white,  Color of the text
             duration: const Duration(
                 seconds: 3), // Duration for which the Snackbar is shown
           );
+          Get.offAll(LoginPage()); // Move this line here
         }
       }
     }
   }
+
+  // void register() async {
+  //   if (formKey.currentState!.validate()) {
+  //     formKey.currentState!.save();
+
+  //     try {
+  //       // databaseRef
+  //       //     .child(DateTime.now().millisecondsSinceEpoch.toString())
+  //       //     .set({
+  //       //   "name": _nameTextEditingController.text.toString(),
+  //       //   "email": _emailTextEditingController.text.toString(),
+  //       // }).then((value) {
+  //       //   Get.snackbar(
+  //       //     "Successfully",
+  //       //     'Account is Created',
+  //       //     icon: Icon(Icons.account_circle_outlined, color: Colors.black),
+  //       //     backgroundColor: App_Colors.app_white_color,
+  //       //     colorText: Colors.black,
+  //       //     snackPosition: SnackPosition.TOP,
+  //       //   );
+  //       // }).onError((error, stackTrace) {});
+  //       UserCredential userCredential = await FirebaseAuth.instance
+  //           .createUserWithEmailAndPassword(
+  //               email: email.value, password: password.value);
+  //       User user = userCredential.user!;
+  //       user.sendEmailVerification();
+  //       Get.offAll(BottomNav());
+  //     }
+  //     on FirebaseAuthException catch (e) {
+  //       if (e.code == 'email-already-in-use') {
+  //         print("Account Already Exists. \nPlease Login!");
+  //         Get.offAll(LoginPage());
+  //         Get.snackbar(
+  //           'Account Already Exists. ', //Snackbar title
+  //           'Please Login!', // Snackbar message
+  //           icon: const Icon(Icons.error_outline, color: Colors.black),
+  //           backgroundColor: App_Colors.app_white_color,
+
+  //           colorText: Colors.black,
+  //           snackPosition: SnackPosition.TOP,
+  //           //  colorText: Colors.white,  Color of the text
+  //           duration: const Duration(
+  //               seconds: 3), // Duration for which the Snackbar is shown
+  //         );
+  //       }
+  //     }
+
+  //   }
+  // }
 }

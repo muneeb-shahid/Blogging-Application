@@ -23,8 +23,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ref = FirebaseDatabase.instance.ref("Blog");
-  final User _user = FirebaseAuth.instance.currentUser!;
-
+    final User _user = FirebaseAuth.instance.currentUser!;
 
     final FavouriteController favouriteController =
         Get.put(FavouriteController());
@@ -133,28 +132,29 @@ class HomePage extends StatelessWidget {
                     //       }
                     //     }),
 
-                //     ListTile(
-                //       leading: Icon(
-                //         Icons.person_2_outlined,
-                //         color: App_Colors.app_white_color,
-                //       ),
-                //       title: Text(
-                //  _user.displayName ?? _signUpController.name.value.toUpperCase(),
-                //         style: TextStyle(
-                //             color: App_Colors.app_white_color,
-                //             fontSize: FontsConstants.text_font_size.sp,
-                //             fontFamily: FontsConstants.regular_font_family,
-                //             wordSpacing: 1,
-                //             letterSpacing: 1),
-                //       ),
-                //     ),
+                    //     ListTile(
+                    //       leading: Icon(
+                    //         Icons.person_2_outlined,
+                    //         color: App_Colors.app_white_color,
+                    //       ),
+                    //       title: Text(
+                    //  _user.displayName ?? _signUpController.name.value.toUpperCase(),
+                    //         style: TextStyle(
+                    //             color: App_Colors.app_white_color,
+                    //             fontSize: FontsConstants.text_font_size.sp,
+                    //             fontFamily: FontsConstants.regular_font_family,
+                    //             wordSpacing: 1,
+                    //             letterSpacing: 1),
+                    //       ),
+                    //     ),
                     ListTile(
                       leading: Icon(
                         Icons.email_outlined,
                         color: App_Colors.app_white_color,
                       ),
                       title: Text(
-                       _user.email ?? _signUpController.email.value.toLowerCase(),
+                        _user.email ??
+                            _signUpController.email.value.toLowerCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,
@@ -212,6 +212,35 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Column(children: [
+              TextFormField(
+                keyboardType: TextInputType.text,
+                controller: homeController.SearchTextEditingController,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                validator: (value) {
+                  return value!.isEmpty ? "Enter blog title to search" : null;
+                },
+                onChanged: (value) {
+                  homeController.search = value;
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search with title blog',
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  prefixIcon: Icon(Icons.search, color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: heightt * 0.03,
+              ),
               Expanded(
                   child: StreamBuilder(
                       stream: ref.onValue,
@@ -229,64 +258,142 @@ class HomePage extends StatelessWidget {
                           return ListView.builder(
                             itemCount: snapshot.data!.snapshot.children.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 100,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(BlogFullPost(
-                                      blogData: list[index],
-                                    ));
-                                  },
-                                  child: Card(
-                                    child: ListTile(
-                                      trailing: IconButton(
-                                        onPressed: () {
-                                          Map<String, dynamic> selectedBlog =
-                                              Map.from(list[index]);
-                                          if (favouriteController.tempList.any(
-                                              (item) =>
-                                                  item["title"] ==
-                                                  selectedBlog["title"])) {
-                                            favouriteController
-                                                .removeFavourite(selectedBlog);
-                                          } else {
-                                            favouriteController
-                                                .addToFavourite(selectedBlog);
-                                          }
-                                        },
-                                        icon: Obx(() => Icon(
-                                              Icons.favorite,
-                                              color: favouriteController
-                                                      .tempList
-                                                      .any((item) =>
-                                                          item["title"] ==
-                                                          list[index]["title"])
-                                                  ? Colors.red
-                                                  : Colors.black,
-                                            )),
-                                      ),
-                                      leading: Text(
-                                        list[index]['date'].toString(),
-                                        style: TextStyle(
-                                            color: Colors.green, fontSize: 14),
-                                      ),
-                                      title: Text(
-                                        list[index]["title"].toString(),
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 14),
-                                      ),
-                                      subtitle: Text(
-                                        list[index]["content"].toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                        softWrap: true,
-                                        maxLines: 3,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 12),
+                              String tempTitle =
+                                  list[index]["title"];
+                              if (homeController
+                                      .SearchTextEditingController.toString()==null
+                                ) {
+                                return Container(
+                                  height: 100,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(BlogFullPost(
+                                        blogData: list[index],
+                                      ));
+                                    },
+                                    child: Card(
+                                      child: ListTile(
+                                        trailing: IconButton(
+                                          onPressed: () {
+                                            Map<String, dynamic> selectedBlog =
+                                                Map.from(list[index]);
+                                            if (favouriteController.tempList
+                                                .any((item) =>
+                                                    item["title"] ==
+                                                    selectedBlog["title"])) {
+                                              favouriteController
+                                                  .removeFavourite(
+                                                      selectedBlog);
+                                            } else {
+                                              favouriteController
+                                                  .addToFavourite(selectedBlog);
+                                            }
+                                          },
+                                          icon: Obx(() => Icon(
+                                                Icons.favorite,
+                                                color: favouriteController
+                                                        .tempList
+                                                        .any((item) =>
+                                                            item["title"] ==
+                                                            list[index]
+                                                                ["title"])
+                                                    ? Colors.red
+                                                    : Colors.black,
+                                              )),
+                                        ),
+                                        leading: Text(
+                                          list[index]['date'].toString(),
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 14),
+                                        ),
+                                        title: Text(
+                                          list[index]["title"].toString(),
+                                          style: TextStyle(
+                                              color: Colors.red, fontSize: 14),
+                                        ),
+                                        subtitle: Text(
+                                          list[index]["content"].toString(),
+                                          overflow: TextOverflow.ellipsis,
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
+                                );
+                              } else if (tempTitle.toLowerCase().contains(
+                                  homeController
+                                      .SearchTextEditingController.text
+                                      .toString())) {
+                                return Container(
+                                  height: 100,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(BlogFullPost(
+                                        blogData: list[index],
+                                      ));
+                                    },
+                                    child: Card(
+                                      child: ListTile(
+                                        trailing: IconButton(
+                                          onPressed: () {
+                                            Map<String, dynamic> selectedBlog =
+                                                Map.from(list[index]);
+                                            if (favouriteController.tempList
+                                                .any((item) =>
+                                                    item["title"] ==
+                                                    selectedBlog["title"])) {
+                                              favouriteController
+                                                  .removeFavourite(
+                                                      selectedBlog);
+                                            } else {
+                                              favouriteController
+                                                  .addToFavourite(selectedBlog);
+                                            }
+                                          },
+                                          icon: Obx(() => Icon(
+                                                Icons.favorite,
+                                                color: favouriteController
+                                                        .tempList
+                                                        .any((item) =>
+                                                            item["title"] ==
+                                                            list[index]
+                                                                ["title"])
+                                                    ? Colors.red
+                                                    : Colors.black,
+                                              )),
+                                        ),
+                                        leading: Text(
+                                          list[index]['date'].toString(),
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 14),
+                                        ),
+                                        title: Text(
+                                          list[index]["title"].toString(),
+                                          style: TextStyle(
+                                              color: Colors.red, fontSize: 14),
+                                        ),
+                                        subtitle: Text(
+                                          list[index]["content"].toString(),
+                                          overflow: TextOverflow.ellipsis,
+                                          softWrap: true,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return Container();
+                              }
                             },
                           );
                         } catch (e) {
