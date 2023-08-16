@@ -133,22 +133,21 @@ class HomePage extends StatelessWidget {
                     //       }
                     //     }),
 
-                    ListTile(
-                      leading: Icon(
-                        Icons.person_2_outlined,
-                        color: App_Colors.app_white_color,
-                      ),
-                      title: Text(
-                 _user.displayName ?? _signUpController.name.value.toUpperCase(),
-                        // _signUpController.name.value.toUpperCase(),
-                        style: TextStyle(
-                            color: App_Colors.app_white_color,
-                            fontSize: FontsConstants.text_font_size.sp,
-                            fontFamily: FontsConstants.regular_font_family,
-                            wordSpacing: 1,
-                            letterSpacing: 1),
-                      ),
-                    ),
+                //     ListTile(
+                //       leading: Icon(
+                //         Icons.person_2_outlined,
+                //         color: App_Colors.app_white_color,
+                //       ),
+                //       title: Text(
+                //  _user.displayName ?? _signUpController.name.value.toUpperCase(),
+                //         style: TextStyle(
+                //             color: App_Colors.app_white_color,
+                //             fontSize: FontsConstants.text_font_size.sp,
+                //             fontFamily: FontsConstants.regular_font_family,
+                //             wordSpacing: 1,
+                //             letterSpacing: 1),
+                //       ),
+                //     ),
                     ListTile(
                       leading: Icon(
                         Icons.email_outlined,
@@ -156,7 +155,6 @@ class HomePage extends StatelessWidget {
                       ),
                       title: Text(
                        _user.email ?? _signUpController.email.value.toLowerCase(),
-                        // _signUpController.email.value.toLowerCase(),
                         style: TextStyle(
                             color: App_Colors.app_white_color,
                             fontSize: FontsConstants.text_font_size.sp,

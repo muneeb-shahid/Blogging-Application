@@ -67,11 +67,11 @@ class SignUpController extends GetxController {
         //   );
         // }).onError((error, stackTrace) {});
         Get.to(BottomNav());
-        final User? user = (await FirebaseAuth.instance
+        UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: email.value, password: password.value)) as User?;
-        user;
-        user!.sendEmailVerification();
+                email: email.value, password: password.value);
+        User user = userCredential.user!;
+        user.sendEmailVerification();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           print("Account Already Exists. \nPlease Login!");
