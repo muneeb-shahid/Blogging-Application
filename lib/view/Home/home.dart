@@ -32,6 +32,8 @@ class HomePage extends StatelessWidget {
     final ProfileController _profileController = Get.put(ProfileController());
     final SignUpController _signUpController = Get.put(SignUpController());
 
+    TextEditingController _searchTextEditingController =
+        TextEditingController();
     var heightt = MediaQuery.of(context).size.height * 1;
     var widthh = MediaQuery.of(context).size.width * 1;
 
@@ -258,11 +260,9 @@ class HomePage extends StatelessWidget {
                           return ListView.builder(
                             itemCount: snapshot.data!.snapshot.children.length,
                             itemBuilder: (context, index) {
-                              String tempTitle =
-                                  list[index]["title"];
+                              String tempTitle = list[index]["title"];
                               if (homeController
-                                      .SearchTextEditingController.toString()==null
-                                ) {
+                                  .SearchTextEditingController.text.isEmpty) {
                                 return Container(
                                   height: 100,
                                   child: GestureDetector(
@@ -273,7 +273,10 @@ class HomePage extends StatelessWidget {
                                     },
                                     child: Card(
                                       child: ListTile(
-                                        trailing: IconButton(
+                                        
+                                        trailing: 
+                                        
+                                        IconButton(
                                           onPressed: () {
                                             Map<String, dynamic> selectedBlog =
                                                 Map.from(list[index]);
@@ -301,6 +304,7 @@ class HomePage extends StatelessWidget {
                                                     : Colors.black,
                                               )),
                                         ),
+                                        
                                         leading: Text(
                                           list[index]['date'].toString(),
                                           style: TextStyle(
@@ -335,7 +339,8 @@ class HomePage extends StatelessWidget {
                                     onTap: () {
                                       Get.to(BlogFullPost(
                                         blogData: list[index],
-                                      ));
+                                      )
+                                      );
                                     },
                                     child: Card(
                                       child: ListTile(
