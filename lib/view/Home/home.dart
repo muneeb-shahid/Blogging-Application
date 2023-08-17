@@ -13,6 +13,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../functions/Custom Button/Login&signupButton.dart';
+import '../../functions/Custom Button/customButton.dart';
 import '../../functions/ListTile/ListTile.dart';
 
 class HomePage extends StatelessWidget {
@@ -264,69 +266,194 @@ class HomePage extends StatelessWidget {
                               if (homeController
                                   .SearchTextEditingController.text.isEmpty) {
                                 return Container(
-                                  height: 100,
                                   child: GestureDetector(
                                     onTap: () {
                                       Get.to(BlogFullPost(
                                         blogData: list[index],
                                       ));
                                     },
-                                    child: Card(
-                                      child: ListTile(
-                                        
-                                        trailing: 
-                                        
-                                        IconButton(
-                                          onPressed: () {
-                                            Map<String, dynamic> selectedBlog =
-                                                Map.from(list[index]);
-                                            if (favouriteController.tempList
-                                                .any((item) =>
-                                                    item["title"] ==
-                                                    selectedBlog["title"])) {
-                                              favouriteController
-                                                  .removeFavourite(
-                                                      selectedBlog);
-                                            } else {
-                                              favouriteController
-                                                  .addToFavourite(selectedBlog);
-                                            }
-                                          },
-                                          icon: Obx(() => Icon(
-                                                Icons.favorite,
-                                                color: favouriteController
-                                                        .tempList
-                                                        .any((item) =>
-                                                            item["title"] ==
-                                                            list[index]
-                                                                ["title"])
-                                                    ? Colors.red
-                                                    : Colors.black,
-                                              )),
-                                        ),
-                                        
-                                        leading: Text(
-                                          list[index]['date'].toString(),
-                                          style: TextStyle(
-                                              color: Colors.green,
-                                              fontSize: 14),
-                                        ),
-                                        title: Text(
-                                          list[index]["title"].toString(),
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        subtitle: Text(
-                                          list[index]["content"].toString(),
-                                          overflow: TextOverflow.ellipsis,
-                                          softWrap: true,
-                                          maxLines: 3,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12),
+
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Card(
+                                        color: Color(0xffF6F6F6),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: widthh * 0.8,
+                                          child: ListTile(
+                                            title: Padding(
+                                              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    list[index]["title"]
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    softWrap: true,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        letterSpacing: 2,
+                                                        wordSpacing: 2,
+                                                        color: App_Colors
+                                                            .app_black_color,
+                                                        fontFamily: FontsConstants
+                                                            .heading_font_family,
+                                                        fontSize: 16.sp),
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        list[index]['date']
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: App_Colors
+                                                                .app_black_color,
+                                                            fontFamily: FontsConstants
+                                                                .regular_font_family,
+                                                            fontSize:
+                                                                FontsConstants
+                                                                    .text_font_size
+                                                                    .sp),
+                                                      ),
+                                                      IconButton(
+                                                        onPressed: () {
+                                                          Map<String, dynamic>
+                                                              selectedBlog =
+                                                              Map.from(
+                                                                  list[index]);
+                                                          if (favouriteController
+                                                              .tempList
+                                                              .any((item) =>
+                                                                  item["title"] ==
+                                                                  selectedBlog[
+                                                                      "title"])) {
+                                                            favouriteController
+                                                                .removeFavourite(
+                                                                    selectedBlog);
+                                                          } else {
+                                                            favouriteController
+                                                                .addToFavourite(
+                                                                    selectedBlog);
+                                                          }
+                                                        },
+                                                        icon: Obx(() => Icon(
+                                                              Icons.favorite,
+                                                              color: favouriteController
+                                                                      .tempList
+                                                                      .any((item) =>
+                                                                          item[
+                                                                              "title"] ==
+                                                                          list[index]
+                                                                              [
+                                                                              "title"])
+                                                                  ? Colors.red
+                                                                  : Colors.black,
+                                                            )),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Divider(
+                                                    thickness: 2,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Text(
+                                                    list[index]["content"]
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    softWrap: true,
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        color: App_Colors
+                                                            .app_black_color,
+                                                        fontFamily: FontsConstants
+                                                            .regular_font_family,
+                                                        fontSize: 13.sp),
+                                                  ),
+                                                  SizedBox(
+                                                    height: heightt * 0.03,
+                                                  ),
+                                                  customLogin_SignupButton(
+                                                      innerColor: App_Colors
+                                                          .app_black_color,
+                                                      textColor: App_Colors
+                                                          .app_white_color,
+                                                      text: "Read more",
+                                                      func: () =>
+                                                          Get.to(BlogFullPost(
+                                                            blogData: list[index],
+                                                          ))),
+                                                          SizedBox(height: heightt*0.01,),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
+
+                                    // child: Card(
+                                    //   child: ListTile(
+
+                                    //     trailing:
+
+                                    //     IconButton(
+                                    //       onPressed: () {
+                                    //         Map<String, dynamic> selectedBlog =
+                                    //             Map.from(list[index]);
+                                    //         if (favouriteController.tempList
+                                    //             .any((item) =>
+                                    //                 item["title"] ==
+                                    //                 selectedBlog["title"])) {
+                                    //           favouriteController
+                                    //               .removeFavourite(
+                                    //                   selectedBlog);
+                                    //         } else {
+                                    //           favouriteController
+                                    //               .addToFavourite(selectedBlog);
+                                    //         }
+                                    //       },
+                                    //       icon: Obx(() => Icon(
+                                    //             Icons.favorite,
+                                    //             color: favouriteController
+                                    //                     .tempList
+                                    //                     .any((item) =>
+                                    //                         item["title"] ==
+                                    //                         list[index]
+                                    //                             ["title"])
+                                    //                 ? Colors.red
+                                    //                 : Colors.black,
+                                    //           )),
+                                    //     ),
+
+                                    //     leading: Text(
+                                    //       list[index]['date'].toString(),
+                                    //       style: TextStyle(
+                                    //           color: Colors.green,
+                                    //           fontSize: 14),
+                                    //     ),
+                                    //     title: Text(
+                                    //       list[index]["title"].toString(),
+                                    //       style: TextStyle(
+                                    //           color: Colors.red, fontSize: 14),
+                                    //     ),
+                                    //     subtitle: Text(
+                                    //       list[index]["content"].toString(),
+                                    //       overflow: TextOverflow.ellipsis,
+                                    //       softWrap: true,
+                                    //       maxLines: 3,
+                                    //       style: TextStyle(
+                                    //           color: Colors.black,
+                                    //           fontSize: 12),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ),
                                 );
                               } else if (tempTitle.toLowerCase().contains(
@@ -339,8 +466,7 @@ class HomePage extends StatelessWidget {
                                     onTap: () {
                                       Get.to(BlogFullPost(
                                         blogData: list[index],
-                                      )
-                                      );
+                                      ));
                                     },
                                     child: Card(
                                       child: ListTile(

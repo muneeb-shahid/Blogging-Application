@@ -26,7 +26,7 @@ class CreateBlogController extends GetxController {
     if (words.length < 2) {
       return 'Please write at least 2 words.';
     } else if (words.length > 51) {
-      return 'Please do not write more than 50 words.';
+      return 'Please do not write more than 20 words.';
     }
 
     return null;
