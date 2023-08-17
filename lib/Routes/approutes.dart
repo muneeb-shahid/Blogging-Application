@@ -6,8 +6,8 @@ import '../View/SignUp/SignUp.dart';
 import '../View/Welcome/Welcome.dart';
 import '../view/Home/home.dart';
 import '../view/Login/login.dart';
-import '../view/MyBlog/MyBlog.dart';
 import '../view/Bottom Nav/BottomNav.dart';
+import '../view/Profile/Profile.dart';
 
 class AppRoutes {
   static appRoutes() => [
@@ -36,6 +36,8 @@ class AppRoutes {
           name: RoutesName.HomePage,
           page: () => HomePage(),
         ),
-        GetPage(name: RoutesName.MyBlog, page: () => MyBlog()),
+        GetPage(name: RoutesName.Profile, page: () => Profile()),
+
+        
       ];
 }

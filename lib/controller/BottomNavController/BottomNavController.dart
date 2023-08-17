@@ -1,9 +1,9 @@
 import 'package:blog_app/view/CreateBlog/CreateBlog.dart';
 import 'package:blog_app/view/Favourite/Favourite.dart';
-import 'package:blog_app/view/MyBlog/MyBlog.dart';
 import 'package:get/get.dart';
 
 import '../../view/Home/home.dart';
+import '../../view/Profile/Profile.dart';
 
 class BottomNavController extends GetxController {
   
@@ -12,7 +12,7 @@ class BottomNavController extends GetxController {
     HomePage(),
     Favourite(),
     CreateBlog(),
-    MyBlog(),
+    Profile(),
   ];
 
   void changeIndex(int index) {

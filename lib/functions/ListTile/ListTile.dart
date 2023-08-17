@@ -21,12 +21,12 @@ class Drawer_Function {
           child: ListTile(
             leading: Icon(
               iconn,
-              color: App_Colors.app_white_color,
+              color: App_Colors.app_black_color,
             ),
             title: Text(
               text,
               style: TextStyle(
-                  color: App_Colors.app_white_color,
+                  color: App_Colors.app_black_color,
                   fontSize: FontsConstants.text_font_size.sp,
                   fontFamily: FontsConstants.regular_font_family,
                   wordSpacing: 1,

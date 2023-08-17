@@ -58,12 +58,12 @@ class BottomNav extends StatelessWidget {
                     label: "Create Blog",
                   ),
                   BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.article),
+                    activeIcon: Icon(Icons.person),
                     icon: Icon(
-                      Icons.article_outlined,
+                      Icons.person_2_outlined,
                       color: Colors.black,
                     ),
-                    label: "My Blog",
+                    label: "Profile",
                   ),
                 ],
               ));
