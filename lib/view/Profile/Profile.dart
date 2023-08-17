@@ -34,6 +34,7 @@ class Profile extends StatelessWidget {
     var heightt = MediaQuery.of(context).size.height * 1;
     var widthh = MediaQuery.of(context).size.width * 1;
     return Scaffold(
+      backgroundColor: App_Colors.app_background_color,
       body: 
           SafeArea(
             top: true,

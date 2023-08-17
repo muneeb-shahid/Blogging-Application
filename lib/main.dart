@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Routes/approutes.dart';
-import 'cardui.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -34,8 +33,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
-          // getPages: AppRoutes.appRoutes(),
-          home: BottomNav(),
+          getPages: AppRoutes.appRoutes(),
         );
       },
     );

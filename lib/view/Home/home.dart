@@ -21,17 +21,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ref = FirebaseDatabase.instance.ref("Blog");
-    final User _user = FirebaseAuth.instance.currentUser!;
 
     final FavouriteController favouriteController =
         Get.put(FavouriteController());
 
     HomeController homeController = Get.put(HomeController());
-    final ProfileController _profileController = Get.put(ProfileController());
-    final SignUpController _signUpController = Get.put(SignUpController());
 
-    TextEditingController _searchTextEditingController =
-        TextEditingController();
     var heightt = MediaQuery.of(context).size.height * 1;
 
     return Scaffold(
@@ -56,13 +51,14 @@ class HomePage extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Search with title blog',
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide(
                       width: 1,
                       color: Colors.black,
                     ),
                   ),
                   border: OutlineInputBorder(
+                     borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide(color: Colors.black)),
                   prefixIcon: Icon(Icons.search, color: Colors.black),
                 ),
