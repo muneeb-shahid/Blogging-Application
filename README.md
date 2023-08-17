@@ -7,7 +7,7 @@
   </span>
   <span class="column">
     <img  align="left"  src="https://github.com/muneeb-shahid/Blog-App/assets/115135886/1a90d964-4f28-4831-8e3f-07b022155d95" style="width:300"  height="500">
-  </span>  
+  </span> 
 <span class="column">
     <img  align="left"  src="https://github.com/muneeb-shahid/Blog-App/assets/115135886/16f48dff-85d0-4b7c-a0d4-7ac3175cf5b6" style="width:300"  height="500">
   </span>
