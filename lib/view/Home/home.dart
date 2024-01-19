@@ -1,17 +1,14 @@
 import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
 import 'package:blog_app/Constants/FontConstant/FontConstant.dart';
-import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
-import 'package:blog_app/controller/HomeController/HomeController.dart';
-import 'package:blog_app/controller/ProfileController/ProfileController.dart';
-import 'package:blog_app/controller/SignUpController/SignUpController.dart';
-import 'package:blog_app/view/BlogFullPost/BlogFullPost.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:blog_app/controller/favourite_controller/favourite_controller.dart';
+import 'package:blog_app/controller/home_controller/home_controller.dart';
+import 'package:blog_app/view/blog_full_post/blog_full_post.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../functions/Custom Button/Login&signupButton.dart';
+import '../../functions/custom_button/login_and_signup_button.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
@@ -58,7 +55,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   border: OutlineInputBorder(
-                     borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide(color: Colors.black)),
                   prefixIcon: Icon(Icons.search, color: Colors.black),
                 ),
@@ -203,7 +200,7 @@ class HomePage extends StatelessWidget {
                                                   SizedBox(
                                                     height: heightt * 0.03,
                                                   ),
-                                                  customLogin_SignupButton(
+                                                  customLoginSignupButton(
                                                       innerColor: App_Colors
                                                           .app_black_color,
                                                       textColor: App_Colors
@@ -347,7 +344,7 @@ class HomePage extends StatelessWidget {
                                                   SizedBox(
                                                     height: heightt * 0.03,
                                                   ),
-                                                  customLogin_SignupButton(
+                                                  customLoginSignupButton(
                                                       innerColor: App_Colors
                                                           .app_black_color,
                                                       textColor: App_Colors
@@ -488,7 +485,7 @@ class HomePage extends StatelessWidget {
                                                   SizedBox(
                                                     height: heightt * 0.03,
                                                   ),
-                                                  customLogin_SignupButton(
+                                                  customLoginSignupButton(
                                                       innerColor: App_Colors
                                                           .app_black_color,
                                                       textColor: App_Colors

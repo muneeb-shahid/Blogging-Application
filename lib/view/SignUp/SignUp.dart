@@ -1,16 +1,16 @@
+import 'package:blog_app/Constants/FontConstant/FontConstant.dart';
 import 'package:blog_app/Functions/Email&PasswordValidation/Email_Password_Validation.dart';
 import 'package:blog_app/View/Login/login.dart';
-import 'package:blog_app/constants/Color%20Constant/ColorConstant.dart';
-import 'package:blog_app/controller/ToggleObscured/ToggleObscured.dart';
-import 'package:blog_app/functions/AppImage%20&%20Title/AppImage%20&%20Title.dart';
+import 'package:blog_app/controller/signup_controller/signup_controller.dart';
+import 'package:blog_app/controller/toggle_obscured/toggle_obscured.dart';
+import 'package:blog_app/functions/custom_button/login_and_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../constants/FontConstant/FontConstant.dart';
-import '../../controller/SignUpController/SignUpController.dart';
-import '../../functions/Custom Button/Login&signupButton.dart';
+import '../../Functions/AppImage & Title/AppImage & Title.dart';
+import '../../constants/color_constant/color_constant.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -26,9 +26,9 @@ class SignUpPage extends StatelessWidget {
     var heightt = MediaQuery.of(context).size.height * 1;
 
     return Scaffold(
-      backgroundColor: App_Colors.app_background_color,
+      backgroundColor: AppColors.appAmberColor,
       appBar: AppBar(
-          backgroundColor: App_Colors.app_background_color,
+          backgroundColor: AppColors.appAmberColor,
           elevation: 0,
           leading: InkWell(
             child: const Icon(
@@ -67,7 +67,6 @@ class SignUpPage extends StatelessWidget {
                       TextSpan(
                         text: 'reate',
                         style: TextStyle(
-                            // color: App_Colors.app_black_color,
                             color: Colors.black,
                             fontSize: FontsConstants.heading_font_size.sp,
                             fontFamily: FontsConstants.Philosopher,
@@ -122,10 +121,10 @@ class SignUpPage extends StatelessWidget {
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                              color: App_Colors.app_black_color,
+                              color: AppColors.appBlackColor,
                             )),
                             prefixIcon: Icon(Icons.person),
-                            prefixIconColor: App_Colors.app_black_color,
+                            prefixIconColor: AppColors.appBlackColor,
                             hintText: 'Name',
                             hintStyle: TextStyle()),
                         validator: _signUpController.validateName,
@@ -145,10 +144,10 @@ class SignUpPage extends StatelessWidget {
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                              color: App_Colors.app_black_color,
+                              color: AppColors.appBlackColor,
                             )),
                             prefixIcon: const Icon(Icons.email),
-                            prefixIconColor: App_Colors.app_black_color,
+                            prefixIconColor: AppColors.appBlackColor,
                             hintText: 'Email',
                             hintStyle: TextStyle()),
                         validator: _emailPasswordValidation.validateEmail,
@@ -168,10 +167,10 @@ class SignUpPage extends StatelessWidget {
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                            color: App_Colors.app_black_color,
+                            color: AppColors.appBlackColor,
                           )),
                           prefixIcon: const Icon(Icons.password),
-                          prefixIconColor: App_Colors.app_black_color,
+                          prefixIconColor: AppColors.appBlackColor,
                           hintText: 'Password',
                           suffixIcon: GestureDetector(
                               onTap: () {
@@ -197,9 +196,9 @@ class SignUpPage extends StatelessWidget {
                       SizedBox(
                         height: heightt * 0.04,
                       ),
-                      customLogin_SignupButton(
-                          innerColor: App_Colors.app_black_color,
-                          textColor: App_Colors.app_white_color,
+                      customLoginSignupButton(
+                          innerColor: AppColors.appBlackColor,
+                          textColor: AppColors.appWhiteColor,
                           text: "Sign Up",
                           func: () => _signUpController.register()),
                       SizedBox(
@@ -214,7 +213,7 @@ class SignUpPage extends StatelessWidget {
                               child: Text(
                                 "Already have an account?",
                                 style: TextStyle(
-                                  color: App_Colors.app_black_color,
+                                  color: AppColors.appBlackColor,
                                   fontSize: FontsConstants.text_font_size.sp,
                                   fontFamily:
                                       FontsConstants.regular_font_family,
@@ -230,7 +229,7 @@ class SignUpPage extends StatelessWidget {
                                   "Log In",
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
-                                    color: App_Colors.app_black_color,
+                                    color: AppColors.appBlackColor,
                                     fontSize: FontsConstants.text_font_size.sp,
                                     fontFamily:
                                         FontsConstants.regular_font_family,

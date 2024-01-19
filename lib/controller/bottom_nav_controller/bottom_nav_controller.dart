@@ -1,5 +1,5 @@
-import 'package:blog_app/view/CreateBlog/CreateBlog.dart';
 import 'package:blog_app/view/Favourite/Favourite.dart';
+import 'package:blog_app/view/create_blog/create_blog.dart';
 import 'package:get/get.dart';
 
 import '../../view/Home/home.dart';

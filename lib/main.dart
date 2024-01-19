@@ -1,10 +1,9 @@
-import 'package:blog_app/view/Bottom%20Nav/BottomNav.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Routes/approutes.dart';
+import 'routes/approutes.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

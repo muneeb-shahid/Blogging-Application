@@ -1,5 +1,5 @@
-import 'package:blog_app/controller/SignUpController/SignUpController.dart';
-import 'package:blog_app/view/Bottom%20Nav/BottomNav.dart';
+import 'package:blog_app/controller/signup_controller/signup_controller.dart';
+import 'package:blog_app/view/bottom_nav/bottom_nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,7 @@
 import 'package:blog_app/View/SignUp/SignUp.dart';
+import 'package:blog_app/controller/signup_controller/signup_controller.dart';
+import 'package:blog_app/functions/custom_button/login_and_signup_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -9,8 +10,6 @@ import '../../Constants/FontConstant/FontConstant.dart';
 import '../../Controller/LoginController/LoginController.dart';
 import '../../Functions/AppImage & Title/AppImage & Title.dart';
 import '../../Functions/Email&PasswordValidation/Email_Password_Validation.dart';
-import '../../controller/SignUpController/SignUpController.dart';
-import '../../functions/Custom Button/Login&signupButton.dart';
 
 class LoginPage extends StatelessWidget {
   final EmailPasswordValidation _emailPasswordValidation =
@@ -168,7 +167,7 @@ class LoginPage extends StatelessWidget {
                       SizedBox(
                         height: heightt * 0.04,
                       ),
-                      customLogin_SignupButton(
+                      customLoginSignupButton(
                           innerColor: App_Colors.app_black_color,
                           textColor: App_Colors.app_white_color,
                           text: "Login",

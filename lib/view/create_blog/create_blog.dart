@@ -1,5 +1,5 @@
-import 'package:blog_app/controller/CreateBlogController/CreateBlogController.dart';
-import 'package:blog_app/functions/Custom%20Button/Login&signupButton.dart';
+import 'package:blog_app/controller/create_blog_controller/create_blog_controller.dart';
+import 'package:blog_app/functions/custom_button/login_and_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,6 @@ class CreateBlog extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: App_Colors.app_background_color,
-      
       appBar: AppBar(
           backgroundColor: App_Colors.app_background_color,
           centerTitle: true,
@@ -47,7 +46,6 @@ class CreateBlog extends StatelessWidget {
               Get.back();
             },
           )),
-      
       body: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -119,7 +117,7 @@ class CreateBlog extends StatelessWidget {
                   SizedBox(
                     height: heightt * 0.04,
                   ),
-                  customLogin_SignupButton(
+                  customLoginSignupButton(
                       innerColor: App_Colors.app_black_color,
                       textColor: App_Colors.app_white_color,
                       text: "Publish",

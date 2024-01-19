@@ -1,12 +1,10 @@
 class RoutesName {
-  static String WelcomeScreen = '/';
-  static String LoginPage = '/LoginPage';
-  static String SignUpPage = "/SignUpPage";
-  static String BottomNav = "/BottomNav";
-  static String CreateBlog = "/CreateBlog";
-  static String HomePage = "/HomePage";
-  static String BlogFullPost = "/BlogFullPost";
-  static String Profile = "/Profile";
-
-  
+  static String welcomeScreen = '/';
+  static String loginPage = '/loginPage';
+  static String signUpPage = "/signUpPage";
+  static String bottomNav = "/bottomNav";
+  static String createBlog = "/createBlog";
+  static String homePage = "/homePage";
+  static String blogFullPost = "/blogFullPost";
+  static String profile = "/profile";
 }

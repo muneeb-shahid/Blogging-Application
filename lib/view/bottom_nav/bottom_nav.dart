@@ -9,7 +9,6 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var heightt = MediaQuery.of(context).size.height * 1;
     var widthh = MediaQuery.of(context).size.width * 1;
     return GetBuilder<BottomNavController>(
         init: BottomNavController(),

@@ -10,7 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../Constants/FontConstant/FontConstant.dart';
 import '../../View/welcome/welcome.dart';
-import '../../constants/Color Constant/ColorConstant.dart';
+import '../../constants/color_constant/color_constant.dart';
 
 var mediaQueryData = Get.mediaQuery;
 double screenHeight = mediaQueryData.size.height * 1;
@@ -59,7 +59,7 @@ class ProfileController extends GetxController {
             title: Text(
               'Take a photo',
               style: TextStyle(
-                color: App_Colors.app_black_color,
+                color: AppColors.appBlackColor,
                 fontSize: 16.sp,
                 fontFamily: FontsConstants.heading_font_family,
               ),
@@ -77,7 +77,7 @@ class ProfileController extends GetxController {
               title: Text(
                 'Choose from gallery',
                 style: TextStyle(
-                    color: App_Colors.app_black_color,
+                    color: AppColors.appBlackColor,
                     fontSize: 16.sp,
                     fontFamily: FontsConstants.heading_font_family,
                     letterSpacing: 1,
@@ -132,7 +132,7 @@ class ProfileController extends GetxController {
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: "",
-          toolbarColor: App_Colors.app_white_color,
+          toolbarColor: AppColors.appWhiteColor,
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: false,
         ),

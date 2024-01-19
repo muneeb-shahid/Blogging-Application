@@ -1,7 +1,7 @@
 import 'package:blog_app/Constants/Color%20Constant/ColorConstant.dart';
 import 'package:blog_app/Constants/FontConstant/FontConstant.dart';
+import 'package:blog_app/Functions/AppImage%20&%20Title/AppImage%20&%20Title.dart';
 import 'package:blog_app/Functions/Custom%20Button/customButton.dart';
-import 'package:blog_app/functions/AppImage%20&%20Title/AppImage%20&%20Title.dart';
 import 'package:blog_app/view/Login/login.dart';
 import 'package:blog_app/view/SignUp/SignUp.dart';
 import 'package:flutter/material.dart';

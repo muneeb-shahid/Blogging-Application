@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../constants/Color Constant/ColorConstant.dart';
+import '../../constants/color_constant/color_constant.dart';
 import 'package:intl/intl.dart';
 
 class CreateBlogController extends GetxController {
@@ -50,8 +50,7 @@ class CreateBlogController extends GetxController {
   publish() {
     if (formKey.currentState!.validate()) {
       final now = DateTime.now();
-      final dateFormat =
-          DateFormat('yyyy-MM-dd'); 
+      final dateFormat = DateFormat('yyyy-MM-dd');
       final formattedDate = dateFormat.format(now);
       databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
         "title": titleController.text.toString(),
@@ -66,7 +65,7 @@ class CreateBlogController extends GetxController {
           "Successfully",
           'Blog is published',
           icon: const Icon(Icons.publish, color: Colors.black),
-          backgroundColor: App_Colors.app_white_color,
+          backgroundColor: AppColors.appWhiteColor,
           colorText: Colors.black,
           snackPosition: SnackPosition.TOP,
         );

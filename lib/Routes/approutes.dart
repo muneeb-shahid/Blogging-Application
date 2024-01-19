@@ -1,43 +1,40 @@
-import 'package:blog_app/Routes/routes_name.dart';
-import 'package:blog_app/view/CreateBlog/CreateBlog.dart';
+import 'package:blog_app/routes/routes_name.dart';
+import 'package:blog_app/view/bottom_nav/bottom_nav.dart';
+import 'package:blog_app/view/create_blog/create_blog.dart';
 import 'package:get/get.dart';
 
 import '../View/SignUp/SignUp.dart';
 import '../View/Welcome/Welcome.dart';
 import '../view/Home/home.dart';
 import '../view/Login/login.dart';
-import '../view/Bottom Nav/BottomNav.dart';
 import '../view/Profile/Profile.dart';
 
 class AppRoutes {
   static appRoutes() => [
         GetPage(
-          name: RoutesName.WelcomeScreen,
+          name: RoutesName.welcomeScreen,
           page: () => WelcomeScreen(),
         ),
         GetPage(
-          name: RoutesName.LoginPage,
+          name: RoutesName.loginPage,
           page: () => LoginPage(),
         ),
         GetPage(
-          name: RoutesName.SignUpPage,
+          name: RoutesName.signUpPage,
           page: () => SignUpPage(),
         ),
         GetPage(
-          name: RoutesName.BottomNav,
+          name: RoutesName.bottomNav,
           page: () => BottomNav(),
         ),
-      
         GetPage(
-          name: RoutesName.CreateBlog,
+          name: RoutesName.createBlog,
           page: () => CreateBlog(),
         ),
         GetPage(
-          name: RoutesName.HomePage,
+          name: RoutesName.homePage,
           page: () => HomePage(),
         ),
-        GetPage(name: RoutesName.Profile, page: () => Profile()),
-
-        
+        GetPage(name: RoutesName.profile, page: () => Profile()),
       ];
 }

@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../controller/LoginController/LoginController.dart';
-import '../../controller/SignUpController/SignUpController.dart';
-
-
 var mediaQueryData = Get.mediaQuery;
 
 double screenHeight = mediaQueryData.size.height * 1;
 double screenWidth = mediaQueryData.size.width * 1;
-final LoginController _loginController = Get.put(LoginController());
-final SignUpController _signUpController = Get.put(SignUpController());
 
-customLogin_SignupButton(
+customLoginSignupButton(
     {required func,
     var innerColor,
     required var textColor,

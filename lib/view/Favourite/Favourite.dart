@@ -1,18 +1,16 @@
+import 'package:blog_app/Constants/FontConstant/FontConstant.dart';
+import 'package:blog_app/controller/favourite_controller/favourite_controller.dart';
+import 'package:blog_app/functions/custom_button/login_and_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:blog_app/controller/FavouriteController/FavouriteController.dart';
 
-import '../../constants/Color Constant/ColorConstant.dart';
-import '../../constants/FontConstant/FontConstant.dart';
-import '../../controller/HomeController/HomeController.dart';
-import '../../controller/ProfileController/ProfileController.dart';
-import '../../controller/SignUpController/SignUpController.dart';
-import '../../functions/Custom Button/Login&signupButton.dart';
-import '../BlogFullPost/BlogFullPost.dart';
+import '../../constants/color_constant/color_constant.dart';
+import '../../controller/home_controller/home_controller.dart';
+import '../blog_full_post/blog_full_post.dart';
 
 class Favourite extends StatelessWidget {
-  Favourite({
+   Favourite({
     super.key,
   });
 
@@ -25,9 +23,9 @@ class Favourite extends StatelessWidget {
   Widget build(BuildContext context) {
     var heightt = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-      backgroundColor: App_Colors.app_background_color,
+      backgroundColor: AppColors.appBackgroundColor,
       appBar: AppBar(
-        backgroundColor: App_Colors.app_background_color,
+        backgroundColor: AppColors.appBackgroundColor,
         centerTitle: true,
         elevation: 0,
         title: FittedBox(
@@ -36,7 +34,7 @@ class Favourite extends StatelessWidget {
             child: Text(
               "My Favourite",
               style: TextStyle(
-                  color: App_Colors.app_black_color,
+                  color: AppColors.appBlackColor,
                   fontSize: FontsConstants.heading_font_size.sp,
                   fontFamily: FontsConstants.Philosopher,
                   wordSpacing: 1,
@@ -45,15 +43,15 @@ class Favourite extends StatelessWidget {
           ),
         ),
       ),
-      body:  Padding(
-       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: Obx(() {
           if (favouriteController.tempList.isEmpty) {
             return Center(
               child: Text(
                 'No favorites added yet.',
                 style: TextStyle(
-                    color: App_Colors.app_red_theme,
+                    color: AppColors.appRedTheme,
                     fontSize: FontsConstants.text_font_size.sp,
                     fontFamily: FontsConstants.heading_font_family,
                     wordSpacing: 1,
@@ -64,8 +62,9 @@ class Favourite extends StatelessWidget {
             return ListView.builder(
               itemCount: favouriteController.tempList.length,
               itemBuilder: (context, index) {
-                dynamic favourite = favouriteController.tempList.elementAt(index);
-      
+                dynamic favourite =
+                    favouriteController.tempList.elementAt(index);
+
                 return Container(
                   child: GestureDetector(
                     onTap: () {
@@ -93,7 +92,7 @@ class Favourite extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 2,
                                         wordSpacing: 2,
-                                        color: App_Colors.app_black_color,
+                                        color: AppColors.appBlackColor,
                                         fontFamily:
                                             FontsConstants.heading_font_family,
                                         fontSize: 16.sp),
@@ -105,11 +104,11 @@ class Favourite extends StatelessWidget {
                                       Text(
                                         favourite['date'].toString(),
                                         style: TextStyle(
-                                            color: App_Colors.app_black_color,
+                                            color: AppColors.appBlackColor,
                                             fontFamily: FontsConstants
                                                 .regular_font_family,
-                                            fontSize:
-                                                FontsConstants.text_font_size.sp),
+                                            fontSize: FontsConstants
+                                                .text_font_size.sp),
                                       ),
                                       IconButton(
                                         onPressed: () {
@@ -131,7 +130,7 @@ class Favourite extends StatelessWidget {
                                     softWrap: true,
                                     maxLines: 3,
                                     style: TextStyle(
-                                        color: App_Colors.app_black_color,
+                                        color: AppColors.appBlackColor,
                                         fontFamily:
                                             FontsConstants.regular_font_family,
                                         fontSize: 13.sp),
@@ -139,9 +138,9 @@ class Favourite extends StatelessWidget {
                                   SizedBox(
                                     height: heightt * 0.03,
                                   ),
-                                  customLogin_SignupButton(
-                                      innerColor: App_Colors.app_black_color,
-                                      textColor: App_Colors.app_white_color,
+                                  customLoginSignupButton(
+                                      innerColor: AppColors.appBlackColor,
+                                      textColor: AppColors.appWhiteColor,
                                       text: "Read more",
                                       func: () => Get.to(BlogFullPost(
                                             blogData: favourite,
@@ -160,7 +159,6 @@ class Favourite extends StatelessWidget {
                 );
               },
             );
-      
           }
         }),
       ),
